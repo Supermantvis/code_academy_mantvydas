@@ -1,1 +1,1 @@
-print('zdarowa :)')
+print('svx')
