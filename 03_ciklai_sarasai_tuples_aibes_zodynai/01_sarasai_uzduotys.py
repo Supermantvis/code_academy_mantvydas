@@ -43,33 +43,34 @@ Suraskite sąraše kurio nors elemento indeksą. 6+
 Atspausdinkite sąrašą atvirkštine tvarka. 7+
 Pabandykite papildomai panaudoti kitus metodus. 8+
 """
-sarasas = ['obuolys', 'bananas', 'kriause', 'melionas', 'alus']
-print('\npradinis sarasas: ', sarasas)
+# sarasas = ['obuolys', 'bananas', 'kriause', 'melionas', 'alus']
+# print('\npradinis sarasas: ', sarasas)
 
-sarasas.append('pienas') # 1
-print('\n1. uzt. pridetas elementas: \'pienas\':', sarasas)
+# sarasas.append('pienas') # 1
+# print('\n1. uzt. pridetas elementas: \'pienas\':', sarasas)
 
-sarasas.insert(3, 'kivi') # 2
-print('\n2. uzd. iterptas 4 elementas \'kivi\':', sarasas)
+# sarasas.insert(3, 'kivi') # 2
+# print('\n2. uzd. iterptas 4 elementas \'kivi\':', sarasas)
 
-sarasas[1] = 'kakava' # 3
-print('\n3. uzd. 2 elementas pakeistas i \'kakava\':', sarasas)
+# sarasas[1] = 'kakava' # 3
+# print('\n3. uzd. 2 elementas pakeistas i \'kakava\':', sarasas)
 
-sarasas.remove('obuolys') # 4
-print('\n4. uzd. istrintas 1 elementas:', sarasas)
+# sarasas.remove('obuolys') # 4
+# print('\n4. uzd. istrintas 1 elementas:', sarasas)
 
-del sarasas[2] # 5
-print('\n5. uzd. istrintas 3 elementas:', sarasas)
+# del sarasas[2] # 5
+# print('\n5. uzd. istrintas 3 elementas:', sarasas)
 
-print('\n6. uzd. elemento \'alus\' inexas:', sarasas.index('alus')) # 6
+# print('\n6. uzd. elemento \'alus\' inexas:', sarasas.index('alus')) # 6
 
-sarasas.reverse() # 7
-print('\n7. uzd. sarasas atvirkstine tvarka:', sarasas)
+# sarasas.reverse() # 7
+# print('\n7. uzd. sarasas atvirkstine tvarka:', sarasas)
 
-sarasas.pop(3) # 8
-print('\n8. uzd. is\'pop\'intas 4 elementas', sarasas)
+# sarasas.pop(3) # 8
+# print('\n8. uzd. is\'pop\'intas 4 elementas', sarasas)
 
-print('\ngalutinis sarasas: ', sarasas)
+# print('\ngalutinis sarasas: ', sarasas)
+
 
 """
 # Penkta užduotis:
