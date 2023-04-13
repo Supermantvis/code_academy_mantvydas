@@ -1,0 +1,1 @@
+print("sveikas") sveikas
