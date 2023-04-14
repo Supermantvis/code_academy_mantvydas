@@ -25,7 +25,7 @@ Patarimas: Naudoti sąrašą (list), ciklą for, funkcijas len ir index
 
 
 # for indeksas, reiksme in enumerate(sarasas):
-#     print(indeksas, reiksme, "ilgis: ", len(reiksme))
+#     print(f'indexiukas: {indeksas}, zodis: {reiksme}, ilgis: {len(reiksme)}')
 
 
 """
@@ -49,8 +49,6 @@ Atspausdintų "Nekeliamieji metai", jei taip yra
 Ketvirta užduotis
 Perdaryti trečią užduoti taip, kad programa atspausdintų visus keliamuosius metus, nuo 1900 iki 2100 metų.
 """
-# for i in range(1900, 2100):
-#     if (i % 4) == 0:
-#         print(i, ' yra Keliamieji metai')
-#     else:
-#         print(i, ' yra Nekeliamieji metai')
+for i in range(1900, 2100):
+    if (i % 4) == 0:
+        print(i, ' yra Keliamieji metai')
