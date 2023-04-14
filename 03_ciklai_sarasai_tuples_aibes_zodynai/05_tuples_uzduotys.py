@@ -6,6 +6,9 @@ Atspausdinkite tuple.
 # grupes = ('worakls', 'nto', 'some other band')
 # print(grupes)
 
+# megstamos_grupes = ('Radiohead', 'The Beatles', 'Pink Floyd', 'Led Zeppelin')  # SUGGESTED SOLUTION
+# print(megstamos_grupes)
+
 
 """
 Antra užduotis
@@ -17,6 +20,10 @@ Atspausdinkite naują tuple.
 # grupes_sum = grupes + grupes2
 # print(grupes_sum)
 
+
+# kitos_grupes = ('Queen', 'The Beatles', 'Nirvana', 'Led Zeppelin')  # SUGGESTED SOLUTION
+# visos_grupes = megstamos_grupes + kitos_grupes
+# print(visos_grupes)
 
 """
 Trečia užduotis
@@ -30,12 +37,19 @@ Atspausdinkite paskutinę grupę.
 # print(grupes[-1])
 
 
+# print(visos_grupes[0])  # SUGGESTED SOLUTION
+# print(visos_grupes[2])
+# print(visos_grupes[-1])
+
 """
 Ketvirta užduotis
 Atspausdinkite kas antrą grupę.
 """
 # grupes = ('worakls', 'nto', 'some other band 1', 'some other band 2')
 # print(grupes[::2])
+
+
+# print(visos_grupes[::2])  # SUGGESTED SOLUTION
 
 
 """
@@ -50,6 +64,15 @@ Patikrinkite ar kuri nors grupė yra tuple.
 # print('part 3: ', type(grupes[3]))
 
 
+# kartai = visos_grupes.count('Led Zeppelin')  # SUGGESTED SOLUTION
+# print("Grupė 'Led Zeppelin' pasikartoja: ", kartai)
+
+# indeksas = visos_grupes.index('Pink Floyd')
+# print("Grupės 'Pink Floyd' indeksas yra: ", indeksas)
+
+# print('Deep Purple' in visos_grupes)
+
+
 """
 Bonus užduotis
 Atspausdinkite grupes atskirose eilutėse taip, kad pavadinimai nesidubliuotų.
@@ -57,3 +80,9 @@ Atspausdinkite grupes atskirose eilutėse taip, kad pavadinimai nesidubliuotų.
 # grupes = ('worakls', 'worakls', 'nto', 'christian loffler', 'some other band 1')
 # for grupe in set(grupes):
 #     print(grupe)
+
+
+# unikalios_grupes = tuple(set(visos_grupes))  # SUGGESTED SOLUTION
+
+# for grupe in unikalios_grupes:
+#   print(grupe)
