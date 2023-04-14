@@ -49,6 +49,6 @@ Atspausdintų "Nekeliamieji metai", jei taip yra
 Ketvirta užduotis
 Perdaryti trečią užduoti taip, kad programa atspausdintų visus keliamuosius metus, nuo 1900 iki 2100 metų.
 """
-for i in range(1900, 2100):
-    if (i % 4) == 0:
-        print(i, ' yra Keliamieji metai')
+# for i in range(1900, 2100):
+#     if (i % 4) == 0:
+#         print(i, ' yra Keliamieji metai')
