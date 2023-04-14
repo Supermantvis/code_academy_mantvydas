@@ -1,2 +1,2 @@
-a = (0 + -1)
-print(a)
+a = "belenkauskas dede is pasvaliu"
+print(list(a))
