@@ -22,6 +22,7 @@ while True:  # main menu loop
     print('Choose 1 if you want to add tasks to TO-DO LIST.')
     print('Choose 2 if you want to move tasks from TO-DO LIST to DONE_LIST.')
     print('Choose 3 if you want to move tasks from DONE_LIST to TO-DO LIST.')
+    print('Choose 4 if you want to save TO-DO list to .txt file.')
     print('Choose 9 if you want to exit program.')
     choice_main_menu = input('Choose: ')  # main menu control options
 
@@ -86,6 +87,29 @@ while True:  # main menu loop
                 print('going back to main menu.')
                 break
 
+    if choice_main_menu == '4':  # menu for task saving TO-DO LIST to .txt file
+        while True:
+            os.system('cls')  # clear screen (windows cli syntax)
+            print('TO-DO LIST TASKS: \n')
+            print(f"{'NUMBER':<10} {'TASKS'}")  # string formating to add column names for 'task index' & 'task name'
+            for i, task in enumerate(to_do_list):
+                # print(i, task)  # simple in code / non descriptive in terminal
+                print("{:<10} {}".format(i, task))  # formated & descriptive in terminal / harder to read as code
+            print('\n')
+            #print_lists()  # function to print both list's contents
+            print('Choose 1 if you want to save TO-DO list to .txt file.')
+            print('Choose 2 if you want to go back.')
+            choice_3nd_menu = input('Choose: ')  # 3rd menu control options
+            if choice_3nd_menu == '1':
+                to_do_txt = open("todo_list.txt", "w") # function for saving to txt file to same directory as py file
+                for j, lst in enumerate(to_do_list):
+                    to_do_txt.write(f"{j + 1} {lst} \n")
+                to_do_txt.close()
+                print('Saved successfully to todo_list.txt')
+                break
+            if choice_3nd_menu == '2':  # choice to go back to main menu
+                print('going back to main menu.')
+                break
 
     if choice_main_menu == '9':  # menu for program termination
         print('Exiting program..')
