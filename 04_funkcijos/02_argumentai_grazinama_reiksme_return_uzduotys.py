@@ -74,7 +74,7 @@ Sukurti funkciją, kuri iš žodžių sąrašo išrenka žodžius, kurie praside
 
 # def list_element_meter(some_list, some_letter):
 #     for some_word in some_list:
-#         if some_word[0][0] == some_letter:
+#         if some_word[0] == some_letter:
 #             returned_list.append(some_word)
 #     return returned_list
 
@@ -96,3 +96,16 @@ Sukurkite funkciją, kuri iš eilutės išrenka visus žodžius, kurių ilgis yr
 #     return returned_list
 
 # print(even_word_len(initial_list))
+
+
+# def rinkti_lyginio_ilgio_zodzius(tekstas):  # SUGGESTED SOLUTION
+#     zodziai = tekstas.split()
+#     lyginio_ilgio_zodziai = []
+#     for zodis in zodziai:
+#         if len(zodis) % 2 == 0:
+#             lyginio_ilgio_zodziai.append(zodis)
+#     return lyginio_ilgio_zodziai
+
+# tekstas = "Labas Vakare, kaip sekasi?"
+# lyginio_ilgio_zodziai = rinkti_lyginio_ilgio_zodzius(tekstas)
+# print(lyginio_ilgio_zodziai)  # išvestų: ['Vakare,', 'kaip']
