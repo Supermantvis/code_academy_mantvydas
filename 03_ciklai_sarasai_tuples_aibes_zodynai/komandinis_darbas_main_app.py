@@ -115,27 +115,26 @@ while True:  # main menu loop
 
     if choice_main_menu == '5':  # menu for editing tasks in TO-DO list
 
-        if choice_main_menu == '6':  # menu for editing tasks in DONE_LIST list
-            while True:
-                os.system('cls')  # clear screen (windows cli syntax)
-                print('DONE LIST TASKS: \n')
-                print(f"{'NUMBER':<10} {'TASKS'}")  # string formating to add column names for 'task index' & 'task name'
-                for i, task in enumerate(done_list):
-                    # print(i, task)  # simple in code / non descriptive in terminal
-                    print("{:<10} {}".format(i, task))  # formated & descriptive in terminal / harder to read as code
-                print('\n')
-                task_id = int(input(f"Choose task \033[32mnumber\033[0m from DONE LIST you wish to edit: "))  # user imput choosing task to edit
-                task_name = input ('Enter new name: ') # get task's new name
-                done_list[task_id] = task_name # edit task in done_list
-                os.system('cls')  # clear screen (windows cli syntax)
-                print('Task has been edited.\n')
-                print_lists()  # function to print both list's contents
-                print('Choose 1 if you want edit another task.')
-                print('Choose 2 if you want to go back.')
-                choice_2nd_menu = input('Choose: ')  # 2nd menu control options
-                if choice_2nd_menu == '2':  # choice to go back to main menu
-                    print('going back to main menu.')
-                    break
+        while True:
+            os.system('cls')  # clear screen (windows cli syntax)
+            print('DONE LIST TASKS: \n')
+            print(f"{'NUMBER':<10} {'TASKS'}")  # string formating to add column names for 'task index' & 'task name'
+            for i, task in enumerate(done_list):
+                # print(i, task)  # simple in code / non descriptive in terminal
+                print("{:<10} {}".format(i, task))  # formated & descriptive in terminal / harder to read as code
+            print('\n')
+            task_id = int(input(f"Choose task \033[32mnumber\033[0m from DONE LIST you wish to edit: "))  # user imput choosing task to edit
+            task_name = input ('Enter new name: ') # get task's new name
+            done_list[task_id] = task_name # edit task in done_list
+            os.system('cls')  # clear screen (windows cli syntax)
+            print('Task has been edited.\n')
+            print_lists()  # function to print both list's contents
+            print('Choose 1 if you want edit another task.')
+            print('Choose 2 if you want to go back.')
+            choice_2nd_menu = input('Choose: ')  # 2nd menu control options
+            if choice_2nd_menu == '2':  # choice to go back to main menu
+                print('going back to main menu.')
+                break
 
         while True:
             os.system('cls')  # clear screen (windows cli syntax)
