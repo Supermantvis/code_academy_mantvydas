@@ -1,85 +1,103 @@
 import os
 
-# Define empty lists to store tasks and completed tasks
+# Create empty lists for tasks and done tasks
 tasks = []
-completed_tasks = []
+done_tasks = []
 
-# Display menu options and ask for input
-while True:
-    os.system('cls' if os.name == 'nt' else 'clear') # clear the terminal
-    print("To-do List Menu:")
+# Define a function to display the menu
+def display_menu():
+    print("Menu:")
     print("1. Add task")
-    print("2. View tasks")
-    print("3. Mark task as completed")
-    print("4. Remove task")
-    print("5. View completed tasks")
-    print("6. Exit")
-    choice = input("Enter your choice (1-6): ")
+    print("2. Remove task")
+    print("3. Mark task as done")
+    print("4. View tasks")
+    print("5. View done tasks")
+    print("6. Save tasks to file")
+    print("7. Exit program")
 
-    # Add a task
-    if choice == "1":
-        task = input("Enter a task: ")
-        tasks.append(task)
-        print("Task added.\n")
+# Define a function to add a task to the list
+def add_task():
+    task = input("Enter task: ")
+    tasks.append(task)
+    print("Task added.")
 
-    # View tasks
-    elif choice == "2":
-        if len(tasks) == 0:
-            print("No tasks.\n")
-        else:
-            print("Tasks:")
-            for i in range(len(tasks)):
-                print(str(i+1) + ". " + tasks[i])
-            print()
-
-    # Mark task as completed
-    elif choice == "3":
-        if len(tasks) == 0:
-            print("No tasks.\n")
-        else:
-            print("Tasks:")
-            for i in range(len(tasks)):
-                print(str(i+1) + ". " + tasks[i])
-            task_index = int(input("Enter the number of the task you completed: "))
-            if task_index < 1 or task_index > len(tasks):
-                print("Invalid task number.\n")
-            else:
-                completed_task = tasks.pop(task_index-1)
-                completed_tasks.append(completed_task)
-                print("Task marked as completed.\n")
-
-    # Remove a task
-    elif choice == "4":
-        if len(tasks) == 0:
-            print("No tasks.\n")
-        else:
-            print("Tasks:")
-            for i in range(len(tasks)):
-                print(str(i+1) + ". " + tasks[i])
-            task_index = int(input("Enter the number of the task you want to remove: "))
-            if task_index < 1 or task_index > len(tasks):
-                print("Invalid task number.\n")
-            else:
-                del tasks[task_index-1]
-                print("Task removed.\n")
-
-    # View completed tasks
-    elif choice == "5":
-        if len(completed_tasks) == 0:
-            print("No completed tasks.\n")
-        else:
-            print("Completed Tasks:")
-            for i in range(len(completed_tasks)):
-                print(str(i+1) + ". " + completed_tasks[i])
-            print()
-
-    # Exit the program
-    elif choice == "6":
-        print("Exiting...")
-        break
-
-    # Invalid input
+# Define a function to remove a task from the list
+def remove_task():
+    task = input("Enter task to remove: ")
+    if task in tasks:
+        tasks.remove(task)
+        print("Task removed.")
     else:
-        print("Invalid input. Please enter a number from 1 to 6.\n")
+        print("Task not found.")
 
-    input("Press Enter to continue...") # wait for user input
+# Define a function to mark a task as done
+def mark_task_done():
+    task = input("Enter task to mark as done: ")
+    if task in tasks:
+        tasks.remove(task)
+        done_tasks.append(task)
+        print("Task marked as done.")
+    else:
+        print("Task not found.")
+
+# Define a function to display the tasks
+def view_tasks():
+    if len(tasks) == 0:
+        print("No tasks.")
+    else:
+        print("Tasks:")
+        for task in tasks:
+            print("- " + task)
+
+# Define a function to display the done tasks
+def view_done_tasks():
+    if len(done_tasks) == 0:
+        print("No done tasks.")
+    else:
+        print("Done tasks:")
+        for task in done_tasks:
+            print("- " + task)
+
+# Define a function to save tasks to a text file
+def save_tasks_to_file():
+    if len(tasks) == 0:
+        print("No tasks to save.")
+    else:
+        file_name = input("Enter file name: ")
+        with open(file_name + ".txt", "w") as f:
+            for task in tasks:
+                f.write(task + "\n")
+        print("Tasks saved to file.")
+
+# Display the menu initially
+display_menu()
+
+# Loop until the user chooses to exit the program
+while True:
+    # Get the user's choice
+    choice = input("Enter choice (1-7): ")
+    
+    # Clear the terminal
+    os.system("cls" if os.name == "nt" else "clear")
+    
+    # Handle the user's choice
+    if choice == "1":
+        add_task()
+    elif choice == "2":
+        remove_task()
+    elif choice == "3":
+        mark_task_done()
+    elif choice == "4":
+        view_tasks()
+    elif choice == "5":
+        view_done_tasks()
+    elif choice == "6":
+        save_tasks_to_file()
+    elif choice == "7":
+        print("Exiting program...")
+        break
+    else:
+        print("Invalid choice.")
+    
+    # Display the menu again
+    display_menu()
