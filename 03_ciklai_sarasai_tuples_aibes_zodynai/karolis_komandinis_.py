@@ -69,6 +69,9 @@ def save_tasks_to_file():
                 f.write(task + "\n")
         print("Tasks saved to file.")
 
+# Clear the terminal
+os.system("cls" if os.name == "nt" else "clear")
+
 # Display the menu initially
 display_menu()
 
@@ -101,3 +104,9 @@ while True:
     
     # Display the menu again
     display_menu()
+
+# Clear the terminal
+os.system("cls" if os.name == "nt" else "clear")
+
+# Print a message indicating that the program has exited
+print("Program exited.")
