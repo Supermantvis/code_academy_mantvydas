@@ -55,7 +55,7 @@ Ketvirta užduotis
 Sukurkite funkciją, kuri iš sąrašo išrenka didžiausią skaičių ir grąžina jį.
 '''
 
-# initial_list = [1, 2, 3, 4, 5]
+# initial_list = [1, 2, 3, 90, 4, 5]
 
 # def big_number(some_list):
 #     biggest_number = max(some_list)
