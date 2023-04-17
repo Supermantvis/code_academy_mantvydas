@@ -40,9 +40,6 @@ Funkcija turi grąžinti šią informaciją kaip žodyną.
 #     keliones_informacija_dict['atstumas'] = atstumas
 #     keliones_informacija_dict['sanaudos'] = sanaudos
 #     keliones_informacija_dict['islaidos'] = islaidos
-#     # keliones_informacija['atstumas'].append(atstumas)
-#     # keliones_informacija['sanaudos'].append(sanaudos)
-#     # keliones_informacija['islaidos'].append(islaidos)
 
 #     return keliones_informacija_dict
 
