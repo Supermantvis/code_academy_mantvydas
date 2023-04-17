@@ -1,9 +1,12 @@
+import os
+
 # Define empty lists to store tasks and completed tasks
 tasks = []
 completed_tasks = []
 
 # Display menu options and ask for input
 while True:
+    os.system('cls' if os.name == 'nt' else 'clear') # clear the terminal
     print("To-do List Menu:")
     print("1. Add task")
     print("2. View tasks")
@@ -78,3 +81,5 @@ while True:
     # Invalid input
     else:
         print("Invalid input. Please enter a number from 1 to 6.\n")
+
+    input("Press Enter to continue...") # wait for user input
