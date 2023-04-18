@@ -12,8 +12,8 @@ import random
 #     else:
 #         print("kazkokia nesamone ivedei, krc bandyk  dar karta..\n")
 
-
-def komandu_paskirstytojas(): # programele sugeneruoti komandas atsitikine tvarka
+# programele sugeneruoti komandas atsitikine tvarka
+def komandu_paskirstytojas(): 
     zmogeliukai = [
     "Raimonda Anisimova",
     "Žygimantas Bičkus",
@@ -34,13 +34,8 @@ def komandu_paskirstytojas(): # programele sugeneruoti komandas atsitikine tvark
     "Petras Anskaitis",
     "Darius Kašėta",
     "Erikas Jankauskas",
-    "Alan Žink",
-    "Loreta Papučkaitė"]
-
-"""
-TEAM LEADS:
-
-"""
+    "Alan Žink"
+    ]
 
     zmoniu_suma_sarase = len(zmogeliukai)
     komandu_kiekis = 3
