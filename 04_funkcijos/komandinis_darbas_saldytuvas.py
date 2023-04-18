@@ -47,8 +47,10 @@ def add_product(product_dict, product_name, count):
     # if product is solid unit == litres (l)
     if product_name in product_dict:
         product_dict[product_name] += count
+        print(f"{product_name} count changed successfully)")
     else:
         product_dict[product_name] = count
+        print(f"{product_name} added successfully")
     return product_dict
 
     # Pavyzdys patikrinimui su user input'ais.
@@ -65,8 +67,10 @@ def remove_product(product_dict, product_name, count_reduce=0):
     if product_name in product_dict:
         if count_reduce == 0:
             del product_dict[product_name]
+            print(f"{product_name} removed successfully")
         else:
             product_dict[product_name] -= count_reduce
+            print(f"{product_name} count successfully changed by {count_reduce}")
     else:
         print(f"{product_name} is not in the fridge")
     return product_dict
