@@ -116,6 +116,49 @@ def calculate_fridge_mass(products):  # Milda Auglytė
     return items_kg
 
 
+def check_recipe(products):
+    recipe = input("Enter the recipe in the format 'ingredient: quantity' (e.g. 'apple: 2'):\n")
+    servings = int(input("Enter the number of servings:\n"))
+    recipe_dict = {}
+    for item in recipe.split(','):
+        item_list = item.split(':')
+        recipe_dict[item_list[0].strip()] = float(item_list[1].strip())
+    missing_items = []
+    for item, quantity in recipe_dict.items():
+        if item not in products:
+            missing_items.append(item)
+        elif products[item]['weight'] < quantity * servings:
+            missing_items.append(item)
+    if missing_items:
+        print("You don't have enough of the following ingredients to make this recipe:")
+        for item in missing_items:
+            print(f"{item}: {recipe_dict[item] * servings - products.get(item, {'weight': 0})['weight']:.2f} {PRODUCT_TYPES[item]}")
+    else:
+        print("You have enough ingredients to make this recipe.")
+        for item, quantity in recipe_dict.items():
+            products[item]['weight'] -= quantity * servings
+        print(f"You used {servings} servings of the following ingredients:")
+        for item, quantity in recipe_dict.items():
+            print(f"{item}: {quantity * servings:.2f} {PRODUCT_TYPES[item]}")
+            
+def shopping_list(products):
+    print("Shopping list:")
+    for item, data in products.items():
+        if data['weight'] <= 0:
+            print(f"{item}: {abs(data['weight']):.2f} {PRODUCT_TYPES[item]}")
+
+def num_dishes(products):
+    num_dishes = float('inf')
+    for item, data in products.items():
+        if item not in DISHES:
+            continue
+        if data['weight'] <= 0:
+            return 0
+        num_dishes = min(num_dishes, data['weight'] // DISHES[item])
+    return int(num_dishes)
+
+
+
 while True:
     os.system('cls')
     print('----------[ FRIDGE ]----------\n')
