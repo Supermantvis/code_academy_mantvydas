@@ -55,7 +55,7 @@ def add_product(product_dict, product_name, count):
 
     # Pavyzdys patikrinimui su user input'ais.
     # added_product = input("Enter product name you wish to add: ")
-    # product_count = input("Enter the amount you are adding: ")
+    # product_count = float(input("Enter the amount you are adding: "))
     # add_product(products, added_product, product_count)
     # print(products)
 
