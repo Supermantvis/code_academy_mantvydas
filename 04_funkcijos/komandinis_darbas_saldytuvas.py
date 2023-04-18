@@ -26,3 +26,16 @@ Tada programa turėtų:
 - jeigu neužtenka, išvardinti ko ir kiek trūksta (shopping list).
 - išvesti, kelioms porcijoms užtenka ingredientų, jei yra perteklius
 '''
+
+#Milda
+products = {'milk': 2, 'fish': 5, 'beer': 4}
+products_list = list(products.values())
+# print(fridge_items)
+
+def calculate_fridge_mass(products_list):
+    items_kg = 0
+    for item in products_list:
+        items_kg = items_kg + item
+    return items_kg
+
+print(calculate_fridge_mass(products_list))
