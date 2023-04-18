@@ -61,8 +61,6 @@ def add_product(product_dict, product_name, count):  # Karolis Jasadavičius
         print(f"{product_name} count changed successfully)")
     else:
         product_dict[product_name] = count
-
-
     # Pavyzdys patikrinimui su user input'ais.
     # added_product = input("Enter product name you wish to add: ")
     # product_count = float(input("Enter the amount you are adding: "))
@@ -91,8 +89,6 @@ def calculate_fridge_mass(products_list):  # Milda Auglytė
     for item in products_list:
         items_mass = items_mass + item
     return items_mass
-
-
 # ------------------- PAVYZDYS -------------------------------
 # print(products)
 # remove_product_name = input("Enter the name of the product to update: ")
@@ -116,6 +112,7 @@ def calculate_fridge_mass(products):  # Milda Auglytė
     return items_kg
 
 
+# milk: 1, fish: 2
 def check_recipe(products):
     recipe = input("Enter the recipe in the format 'ingredient: quantity' (e.g. 'apple: 2'):\n")
     servings = int(input("Enter the number of servings:\n"))
@@ -123,40 +120,42 @@ def check_recipe(products):
     for item in recipe.split(','):
         item_list = item.split(':')
         recipe_dict[item_list[0].strip()] = float(item_list[1].strip())
-    missing_items = []
+    missing_items = {}
     for item, quantity in recipe_dict.items():
         if item not in products:
-            missing_items.append(item)
-        elif products[item]['weight'] < quantity * servings:
-            missing_items.append(item)
+            missing_items[item] = quantity * servings
+        elif products[item] < quantity * servings:
+            missing_items[item] = products[item] - quantity * servings
     if missing_items:
         print("You don't have enough of the following ingredients to make this recipe:")
-        for item in missing_items:
-            print(f"{item}: {recipe_dict[item] * servings - products.get(item, {'weight': 0})['weight']:.2f} {PRODUCT_TYPES[item]}")
-    else:
-        print("You have enough ingredients to make this recipe.")
-        for item, quantity in recipe_dict.items():
-            products[item]['weight'] -= quantity * servings
-        print(f"You used {servings} servings of the following ingredients:")
-        for item, quantity in recipe_dict.items():
-            print(f"{item}: {quantity * servings:.2f} {PRODUCT_TYPES[item]}")
-            
-def shopping_list(products):
-    print("Shopping list:")
-    for item, data in products.items():
-        if data['weight'] <= 0:
-            print(f"{item}: {abs(data['weight']):.2f} {PRODUCT_TYPES[item]}")
+        for item, quantity in missing_items.items():
+            print(f"{item}:{quantity}")
+    print("You have enough ingredients to make this recipe.")
+    for item, quantity in recipe_dict.items():
+        products[item] -= quantity * servings
+    if not len(missing_items) > 0:
+        decision_to_take_out = input("Do you wanna take out products for recipe (yes / no)?: ")
+        if decision_to_take_out == 'yes':    
+            print(f"You used {servings} servings of the following ingredients:")
+            for item, quantity in recipe_dict.items():
+                print(f"{item}: {quantity * servings:.2f}")
 
-def num_dishes(products):
-    num_dishes = float('inf')
-    for item, data in products.items():
-        if item not in DISHES:
-            continue
-        if data['weight'] <= 0:
-            return 0
-        num_dishes = min(num_dishes, data['weight'] // DISHES[item])
-    return int(num_dishes)
 
+# def shopping_list(products):
+#     print("Shopping list:")
+#     for item, data in products.items():
+#         if data['weight'] <= 0:
+#             print(f"{item}: {abs(data['weight']):.2f} {PRODUCT_TYPES[item]}")
+
+# def num_dishes(products):
+#     num_dishes = float('inf')
+#     for item, data in products.items():
+#         if item not in DISHES:
+#             continue
+#         if data['weight'] <= 0:
+#             return 0
+#         num_dishes = min(num_dishes, data['weight'] // DISHES[item])
+#     return int(num_dishes)
 
 
 while True:
@@ -166,13 +165,14 @@ while True:
     print('Choose 2 if you want to add product.')
     print('Choose 3 if you want to remove product.')
     print('Choose 4 if you want to count total mass of products.')
+    print('Choose 5 if you want to check recipies.')
     print('Choose 9 if you want to exit program.')
     choice_main_menu = input('Choose: ')
 
 
     if choice_main_menu == '1':  # view product list
-        # while True:
         os.system('cls')
+        remove_if_zero(products)
         view_product_list(products)
         input('Smash ENTER to continue: ')
 
@@ -197,6 +197,15 @@ while True:
         os.system('cls')
         print('\033[96mTotal fridge mass:\033[0m', calculate_fridge_mass(products))
         input('smash ENTER to continue: ')
+
+
+    elif choice_main_menu == '5':  # recipe check.
+        os.system('cls')
+        print('RECIPE CHECKING: ')
+        # print('Available ingredients: ', view_product_list(products))
+        check_recipe(products)
+        input('Smash ENTER to continue: ')
+
 
     elif choice_main_menu == '9':
         print('Exiting program..')
