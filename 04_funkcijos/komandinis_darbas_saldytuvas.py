@@ -40,8 +40,9 @@ def view_product_list(item_dict):  # Karolis Venckus
         print(f"{item_name}: {item_weight}")
 
 
-def remove_if_zero(item_dict):  # Karolis Venckus
-    empty_products = [product for product, details in item_dict.items() if details['weight'] == 0]
+def remove_if_zero(item_dict):
+    empty_products = [product for product, details in item_dict.items() if details == 0]
+
     for product in empty_products:
         del item_dict[product]
     if empty_products:
@@ -57,12 +58,14 @@ def add_product(product_dict, product_name, count):  # Karolis Jasadavičius
     # if product is liquid unit == litres (l)
     if product_name in product_dict:
         product_dict[product_name] += count
+        print(f"{product_name} count changed successfully)")
     else:
         product_dict[product_name] = count
 
+
     # Pavyzdys patikrinimui su user input'ais.
     # added_product = input("Enter product name you wish to add: ")
-    # product_count = input("Enter the amount you are adding: ")
+    # product_count = float(input("Enter the amount you are adding: "))
     # add_product(products, added_product, product_count)
     # print(products)
 
@@ -74,8 +77,11 @@ def remove_product(product_dict, product_name, count_reduce=0): # Karolis Jasada
     if product_name in product_dict:
         if count_reduce == 0:
             del product_dict[product_name]
+            print(f"{product_name} removed successfully")
         else:
             product_dict[product_name] -= count_reduce
+            print(f"{product_name} count lowered by {count_reduce} (Removed if reaches 0)")
+            remove_if_zero(products)
     else:
         print(f"{product_name} is not in the fridge")
 
