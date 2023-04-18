@@ -30,14 +30,12 @@ Tada programa turėtų:
 import time
 import os
 
-solid_products = {}
-liquid_products = {}
-meals = {}
 products = {'milk': 2, 'fish': 5, 'beer': 4}
 
 def view_product_list():
     # print listed products and counts with respective units
     pass
+
 
 # ------------------- ADD_PRODUCT -----------------------------
 # Funkcija pridėjimo į sąrašą. Jei toks produktas egzistuoja
@@ -86,6 +84,8 @@ def remove_product(product_dict, product_name, count_reduce=0):
 # else:
 #     print(f"{remove_product} is not in the product list.")
 
+
+
 def remove_if_zero():
     # this probably should run after remove_product() eg. if product == 'cheese': 0 ....
     pass
@@ -129,6 +129,7 @@ while True:
     if choice_main_menu == '4':
         os.system('cls')
         print('Here will be calculation of total product mass')
+        print('Total fridge mass: ', calculate_fridge_mass(products))
         input('smash ENTER to continue: ')
 
     if choice_main_menu == '9':
