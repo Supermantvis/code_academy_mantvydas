@@ -50,9 +50,12 @@ def remove_if_zero():
     # this probably should run after remove_product() eg. if product == 'cheese': 0 ....
     pass
 
-def calculate_fridge_mass():
-    # sum products count (1kg == 1l, 3kg == 3l ...)
-    pass
+def calculate_fridge_mass(products):
+    products_list = list(products.values())
+    items_kg = 0
+    for item in products_list:
+        items_kg = items_kg + item
+    return items_kg
 
 while True:
     os.system('cls')
