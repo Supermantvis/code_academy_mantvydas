@@ -1,4 +1,5 @@
 '''
+************************PROGRAMOS APRASYMAS************************
 Parašykite programą šaldytuvas, kuri:
 - saugo produktus žodyne, kur:
 -- produkto pavadinimas yra raktas
@@ -30,10 +31,10 @@ Tada programa turėtų:
 import time
 import os
 
-products = {'milk': 2, 'fish': 5, 'beer': 4}
+products = {'milk': 2.0, 'fish': 5.0, 'beer': 4.0}
 
 
-def view_product_list(item_dict):
+def view_product_list(item_dict):  # Karolis Venckus
     print("Product List:")
     for item_name, item_weight in item_dict.items():
         print(f"{item_name}: {item_weight}")
@@ -41,6 +42,7 @@ def view_product_list(item_dict):
 
 def remove_if_zero(item_dict):
     empty_products = [product for product, details in item_dict.items() if details == 0]
+
     for product in empty_products:
         del item_dict[product]
     if empty_products:
@@ -50,7 +52,7 @@ def remove_if_zero(item_dict):
 # ------------------- ADD_PRODUCT -----------------------------
 # Funkcija pridėjimo į sąrašą. Jei toks produktas egzistuoja
 # prie jo prideda count reikšmę
-def add_product(product_dict, product_name, count):
+def add_product(product_dict, product_name, count):  # Karolis Jasadavičius
     # add products, 
     # if product is solid unit == kg
     # if product is liquid unit == litres (l)
@@ -71,7 +73,7 @@ def add_product(product_dict, product_name, count):
 # Funkcija produkto išėmimui iš sąrašo
 # Count_reduce naudojame, kaip kintamąjį su kurio atemame produkto kiekį,
 # jeigu paliekame 0, produktas istrinamas
-def remove_product(product_dict, product_name, count_reduce=0):
+def remove_product(product_dict, product_name, count_reduce=0): # Karolis Jasadavičius
     if product_name in product_dict:
         if count_reduce == 0:
             del product_dict[product_name]
@@ -82,6 +84,13 @@ def remove_product(product_dict, product_name, count_reduce=0):
             remove_if_zero(products)
     else:
         print(f"{product_name} is not in the fridge")
+
+
+def calculate_fridge_mass(products_list):  # Milda Auglytė
+    items_mass = 0
+    for item in products_list:
+        items_mass = items_mass + item
+    return items_mass
 
 
 # ------------------- PAVYZDYS -------------------------------
@@ -99,12 +108,13 @@ def remove_product(product_dict, product_name, count_reduce=0):
 #     print(f"{remove_product} is not in the product list.")
 
 
-def calculate_fridge_mass(products):  # MILDA
+def calculate_fridge_mass(products):  # Milda Auglytė
     products_list = list(products.values())
     items_kg = 0
     for item in products_list:
         items_kg = items_kg + item
     return items_kg
+
 
 while True:
     os.system('cls')
@@ -116,11 +126,12 @@ while True:
     print('Choose 9 if you want to exit program.')
     choice_main_menu = input('Choose: ')
 
+
     if choice_main_menu == '1':  # view product list
         # while True:
         os.system('cls')
         view_product_list(products)
-        input('smash ENTER to continue: ')
+        input('Smash ENTER to continue: ')
 
 
     elif choice_main_menu == '2':  # add product
@@ -128,18 +139,20 @@ while True:
         added_product = input("Enter product name you wish to add: ")
         product_count = float(input("Enter the amount you are adding: "))
         add_product(products, added_product, product_count)
-        input('smash ENTER to continue: ')
+        input('Smash ENTER to continue: ')
+
 
     elif choice_main_menu == '3':  # remove product
         os.system('cls')
         product_name = input("Enter product name you wish to take: ")
         product_name_count = float(input("Enter the amount of product you're taking out: "))
         remove_product(products, product_name, product_name_count)  # NEED TO FIX
-        input('smash ENTER to continue: ')
+        input('Smash ENTER to continue: ')
+
 
     elif choice_main_menu == '4':  # count total mass of products.
         os.system('cls')
-        print('Total fridge mass: ', calculate_fridge_mass(products))  # MILDA
+        print('\033[96mTotal fridge mass:\033[0m', calculate_fridge_mass(products))
         input('smash ENTER to continue: ')
 
     elif choice_main_menu == '9':
