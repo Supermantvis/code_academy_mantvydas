@@ -31,17 +31,10 @@ Tada programa turėtų:
 import time
 import os
 
-products = {'milk': 2, 'fish': 5, 'beer': 4}
+products = {'milk': 2.0, 'fish': 5.0, 'beer': 4.0}
 
 
-
-def calculate_fridge_mass(products_list):
-    items_mass = 0
-    for item in products_list:
-        items_mass = items_mass + item
-    return items_mass
-
-def view_product_list(item_dict):
+def view_product_list(item_dict):  # Karolis Venckus
     print("Product List:")
     for item_name, item_weight in item_dict.items():
         print(f"{item_name}: {item_weight}")
@@ -87,6 +80,13 @@ def remove_product(product_dict, product_name, count_reduce=0): # Karolis Jasada
         print(f"{product_name} is not in the fridge")
 
 
+def calculate_fridge_mass(products_list):  # Milda Auglytė
+    items_mass = 0
+    for item in products_list:
+        items_mass = items_mass + item
+    return items_mass
+
+
 # ------------------- PAVYZDYS -------------------------------
 # print(products)
 # remove_product_name = input("Enter the name of the product to update: ")
@@ -108,6 +108,7 @@ def calculate_fridge_mass(products):  # Milda Auglytė
     for item in products_list:
         items_kg = items_kg + item
     return items_kg
+
 
 while True:
     os.system('cls')
