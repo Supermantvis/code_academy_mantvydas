@@ -40,7 +40,7 @@ def view_product_list(item_dict):  # Karolis Venckus
         print(f"{item_name}: {item_weight}")
 
 
-def remove_if_zero(item_dict):
+def remove_if_zero(item_dict):   # Karolis Venckus
     empty_products = [product for product, details in item_dict.items() if details == 0]
 
     for product in empty_products:
