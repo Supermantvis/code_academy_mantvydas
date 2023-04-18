@@ -38,10 +38,10 @@ products_list = list(products.values())
 # print(fridge_items)
 
 def calculate_fridge_mass(products_list):
-    items_kg = 0
+    items_mass = 0
     for item in products_list:
-        items_kg = items_kg + item
-    return items_kg
+        items_mass = items_mass + item
+    return items_mass
 
 def add_product(product_name, count):
     # add products, 
@@ -95,7 +95,7 @@ while True:
 
     if choice_main_menu == '4':
         os.system('cls')
-        print('Here will be calculation of total product mass')
+        print('Total fridge mass: ', calculate_fridge_mass(products))
         input('smash ENTER to continue: ')
 
     if choice_main_menu == '9':
