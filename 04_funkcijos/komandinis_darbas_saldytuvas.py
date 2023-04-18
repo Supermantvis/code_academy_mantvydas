@@ -30,32 +30,79 @@ Tada programa turėtų:
 import time
 import os
 
-solid_products = {}
-liquid_products = {}
-meals = {}
 products = {'milk': 2, 'fish': 5, 'beer': 4}
 products_list = list(products.values())
 # print(fridge_items)
 
+<<<<<<< HEAD
 def calculate_fridge_mass(products_list):
     items_mass = 0
     for item in products_list:
         items_mass = items_mass + item
     return items_mass
+=======
+def view_product_list(item_dict):
+    print("Product List:")
+    for item_name, item_weight in item_dict.items():
+        print(f"{item_name}: {item_weight} kg")
+>>>>>>> 3b67469d15f6dee46ef41a106acde04a22fec57e
 
-def add_product(product_name, count):
+
+# ------------------- ADD_PRODUCT -----------------------------
+# Funkcija pridėjimo į sąrašą. Jei toks produktas egzistuoja
+# prie jo prideda count reikšmę
+def add_product(product_dict, product_name, count):
     # add products, 
     # if product is solid unit == kg
     # if product is solid unit == litres (l)
-    pass
+    if product_name in product_dict:
+        product_dict[product_name] += count
+    else:
+        product_dict[product_name] = count
+    return product_dict
 
-def remove_product(product_name, count):
-    # product count reduce
-    pass
+    # Pavyzdys patikrinimui su user input'ais.
+    # added_product = input("Enter product name you wish to add: ")
+    # product_count = input("Enter the amount you are adding: ")
+    # add_product(products, added_product, product_count)
+    # print(products)
 
-def remove_if_zero():
-    # this probably should run after remove_product() eg. if product == 'cheese': 0 ....
-    pass
+# ------------------- REMOVE_PRODUCT --------------------------
+# Funkcija produkto išėmimui iš sąrašo
+# Count_reduce naudojame, kaip kintamąjį su kurio atemame produkto kiekį,
+# jeigu paliekame 0, produktas istrinamas
+def remove_product(product_dict, product_name, count_reduce=0):
+    if product_name in product_dict:
+        if count_reduce == 0:
+            del product_dict[product_name]
+        else:
+            product_dict[product_name] -= count_reduce
+    else:
+        print(f"{product_name} is not in the fridge")
+    return product_dict
+
+# ------------------- PAVYZDYS -------------------------------
+# print(products)
+# remove_product_name = input("Enter the name of the product to update: ")
+# if remove_product_name in products:
+#     reduction = input("Enter the amount you want to reduce (leave blank for complete removal): ")
+#     if len(reduction) == 0: # Patikriname ką iveda vartotojas/ar paliko tuščią
+#         reduction = 0.0
+#     else:
+#         reduction = float(reduction) # Konvertuojame įvestą string
+#     products = remove_product(products, remove_product_name, count_reduce=reduction)
+#     print("Updated product list:", products)
+# else:
+#     print(f"{remove_product} is not in the product list.")
+
+
+
+def remove_if_zero(item_dict):
+    empty_products = [product for product, details in item_dict.items() if details['weight'] == 0]
+    for product in empty_products:
+        del item_dict[product]
+    if empty_products:
+        print(f"{', '.join(empty_products)} removed from the product list.")
 
 def calculate_fridge_mass(products):
     products_list = list(products.values())
@@ -95,6 +142,10 @@ while True:
 
     if choice_main_menu == '4':
         os.system('cls')
+<<<<<<< HEAD
+=======
+        print('Here will be calculation of total product mass')
+>>>>>>> 3b67469d15f6dee46ef41a106acde04a22fec57e
         print('Total fridge mass: ', calculate_fridge_mass(products))
         input('smash ENTER to continue: ')
 
