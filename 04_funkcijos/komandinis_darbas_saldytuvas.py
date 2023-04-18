@@ -31,25 +31,26 @@ import time
 import os
 
 products = {'milk': 2, 'fish': 5, 'beer': 4}
-products_list = list(products.values())
-# print(fridge_items)
 
-<<<<<<< HEAD
+
+
 def calculate_fridge_mass(products_list):
     items_mass = 0
     for item in products_list:
         items_mass = items_mass + item
     return items_mass
-=======
+
 def view_product_list(item_dict):
     print("Product List:")
     for item_name, item_weight in item_dict.items():
-<<<<<<< HEAD
-        print(f"{item_name}: {item_weight} kg")
->>>>>>> 3b67469d15f6dee46ef41a106acde04a22fec57e
-=======
         print(f"{item_name}: {item_weight}")
->>>>>>> 5c83c7378f987db5fe82bc6d63c5fe217d60eda0
+
+def remove_if_zero(item_dict):
+    empty_products = [product for product, details in item_dict.items() if details['weight'] == 0]
+    for product in empty_products:
+        del item_dict[product]
+    if empty_products:
+        print(f"{', '.join(empty_products)} removed from the product list.")
 
 
 # ------------------- ADD_PRODUCT -----------------------------
@@ -63,7 +64,6 @@ def add_product(product_dict, product_name, count):
         product_dict[product_name] += count
     else:
         product_dict[product_name] = count
-    return product_dict
 
     # Pavyzdys patikrinimui su user input'ais.
     # added_product = input("Enter product name you wish to add: ")
@@ -83,7 +83,7 @@ def remove_product(product_dict, product_name, count_reduce=0):
             product_dict[product_name] -= count_reduce
     else:
         print(f"{product_name} is not in the fridge")
-    return product_dict
+
 
 # ------------------- PAVYZDYS -------------------------------
 # print(products)
@@ -100,14 +100,7 @@ def remove_product(product_dict, product_name, count_reduce=0):
 #     print(f"{remove_product} is not in the product list.")
 
 
-def remove_if_zero(item_dict):
-    empty_products = [product for product, details in item_dict.items() if details['weight'] == 0]
-    for product in empty_products:
-        del item_dict[product]
-    if empty_products:
-        print(f"{', '.join(empty_products)} removed from the product list.")
-
-def calculate_fridge_mass(products):
+def calculate_fridge_mass(products):  # MILDA
     products_list = list(products.values())
     items_kg = 0
     for item in products_list:
@@ -134,20 +127,19 @@ while True:
     elif choice_main_menu == '2':  # add product
         os.system('cls')
         added_product = input("Enter product name you wish to add: ")
-        product_count = input("Enter the amount you are adding: ")
+        product_count = float(input("Enter the amount you are adding: "))
         add_product(products, added_product, product_count)
         input('smash ENTER to continue: ')
 
     elif choice_main_menu == '3':  # remove product
         os.system('cls')
         product_name = input("Enter product name you wish to take: ")
-        product_name_count = input("Enter the amount of product you're taking out: ")
-        # remove_product(products, product_name, product_name_count=0)  # NEED TO FIX
+        product_name_count = float(input("Enter the amount of product you're taking out: "))
+        remove_product(products, product_name, product_name_count)  # NEED TO FIX
         input('smash ENTER to continue: ')
 
     elif choice_main_menu == '4':  # count total mass of products.
         os.system('cls')
-        print('Here will be calculation of total product mass')
         print('\033[96mTotal fridge mass:\033[0m', calculate_fridge_mass(products))
         input('smash ENTER to continue: ')
 
