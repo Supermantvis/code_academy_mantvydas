@@ -33,11 +33,17 @@ import os
 products = {'milk': 2, 'fish': 5, 'beer': 4}
 
 
+
+def calculate_fridge_mass(products_list):
+    items_mass = 0
+    for item in products_list:
+        items_mass = items_mass + item
+    return items_mass
+
 def view_product_list(item_dict):
     print("Product List:")
     for item_name, item_weight in item_dict.items():
         print(f"{item_name}: {item_weight}")
-
 
 def remove_if_zero(item_dict):
     empty_products = [product for product, details in item_dict.items() if details['weight'] == 0]
@@ -134,7 +140,7 @@ while True:
 
     elif choice_main_menu == '4':  # count total mass of products.
         os.system('cls')
-        print('Total fridge mass: ', calculate_fridge_mass(products))  # MILDA
+        print('\033[96mTotal fridge mass:\033[0m', calculate_fridge_mass(products))
         input('smash ENTER to continue: ')
 
     elif choice_main_menu == '9':
