@@ -32,7 +32,6 @@ import time
 import os
 
 products = {'milk': 2.0, 'fish': 5.0, 'beer': 4.0}
-discarded_products = {}
 
 
 def view_product_list(item_dict):  # Karolis Venckus
