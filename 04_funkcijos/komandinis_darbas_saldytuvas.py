@@ -31,6 +31,8 @@ import time
 import os
 
 products = {'milk': 2, 'fish': 5, 'beer': 4}
+products_list = list(products.values())
+# print(fridge_items)
 
 def view_product_list(item_dict):
     print("Product List:")
