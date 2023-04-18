@@ -32,9 +32,10 @@ import os
 
 products = {'milk': 2, 'fish': 5, 'beer': 4}
 
-def view_product_list():
-    # print listed products and counts with respective units
-    pass
+def view_product_list(item_dict):
+    print("Product List:")
+    for item_name, item_weight in item_dict.items():
+        print(f"{item_name}: {item_weight} kg")
 
 
 # ------------------- ADD_PRODUCT -----------------------------
@@ -86,9 +87,12 @@ def remove_product(product_dict, product_name, count_reduce=0):
 
 
 
-def remove_if_zero():
-    # this probably should run after remove_product() eg. if product == 'cheese': 0 ....
-    pass
+def remove_if_zero(item_dict):
+    empty_products = [product for product, details in item_dict.items() if details['weight'] == 0]
+    for product in empty_products:
+        del item_dict[product]
+    if empty_products:
+        print(f"{', '.join(empty_products)} removed from the product list.")
 
 def calculate_fridge_mass(products):
     products_list = list(products.values())
