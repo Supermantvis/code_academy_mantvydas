@@ -34,10 +34,18 @@ products = {'milk': 2, 'fish': 5, 'beer': 4}
 products_list = list(products.values())
 # print(fridge_items)
 
+<<<<<<< HEAD
+def calculate_fridge_mass(products_list):
+    items_mass = 0
+    for item in products_list:
+        items_mass = items_mass + item
+    return items_mass
+=======
 def view_product_list(item_dict):
     print("Product List:")
     for item_name, item_weight in item_dict.items():
         print(f"{item_name}: {item_weight} kg")
+>>>>>>> 3b67469d15f6dee46ef41a106acde04a22fec57e
 
 
 # ------------------- ADD_PRODUCT -----------------------------
@@ -135,7 +143,7 @@ while True:
     if choice_main_menu == '4':
         os.system('cls')
         print('Here will be calculation of total product mass')
-        print('Total fridge mass: ', calculate_fridge_mass(products))
+        print('\033[96mTotal fridge mass:\033[0m', calculate_fridge_mass(products))
         input('smash ENTER to continue: ')
 
     if choice_main_menu == '9':
