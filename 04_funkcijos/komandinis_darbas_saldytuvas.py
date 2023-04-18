@@ -35,7 +35,7 @@ products = {'milk': 2, 'fish': 5, 'beer': 4}
 def view_product_list(item_dict):
     print("Product List:")
     for item_name, item_weight in item_dict.items():
-        print(f"{item_name}: {item_weight} kg")
+        print(f"{item_name}: {item_weight}")
 
 
 # ------------------- ADD_PRODUCT -----------------------------
@@ -44,7 +44,7 @@ def view_product_list(item_dict):
 def add_product(product_dict, product_name, count):
     # add products, 
     # if product is solid unit == kg
-    # if product is solid unit == litres (l)
+    # if product is liquid unit == litres (l)
     if product_name in product_dict:
         product_dict[product_name] += count
     else:
@@ -86,7 +86,6 @@ def remove_product(product_dict, product_name, count_reduce=0):
 #     print(f"{remove_product} is not in the product list.")
 
 
-
 def remove_if_zero(item_dict):
     empty_products = [product for product, details in item_dict.items() if details['weight'] == 0]
     for product in empty_products:
@@ -104,7 +103,6 @@ def calculate_fridge_mass(products):
 while True:
     os.system('cls')
     print('----------[ FRIDGE ]----------\n')
-    view_product_list()
     print('Choose 1 if you want to view product list')
     print('Choose 2 if you want to add product.')
     print('Choose 3 if you want to remove product.')
@@ -112,30 +110,33 @@ while True:
     print('Choose 9 if you want to exit program.')
     choice_main_menu = input('Choose: ')
 
-    if choice_main_menu == '1':
+    if choice_main_menu == '1':  # view product list
         # while True:
         os.system('cls')
-        print('Here will be product list')
-        view_product_list()
+        view_product_list(products)
         input('smash ENTER to continue: ')
 
 
-    if choice_main_menu == '2':
+    elif choice_main_menu == '2':  # add product
         os.system('cls')
-        print('Here will be product adding')
+        added_product = input("Enter product name you wish to add: ")
+        product_count = input("Enter the amount you are adding: ")
+        add_product(products, added_product, product_count)
         input('smash ENTER to continue: ')
 
-    if choice_main_menu == '3':
+    elif choice_main_menu == '3':  # remove product
         os.system('cls')
-        print('Here will be product removing')
+        product_name = input("Enter product name you wish to take: ")
+        product_name_count = input("Enter the amount of product you're taking out: ")
+        # remove_product(products, product_name, product_name_count=0)  # NEED TO FIX
         input('smash ENTER to continue: ')
 
-    if choice_main_menu == '4':
+    elif choice_main_menu == '4':  # count total mass of products.
         os.system('cls')
         print('Here will be calculation of total product mass')
         print('Total fridge mass: ', calculate_fridge_mass(products))
         input('smash ENTER to continue: ')
 
-    if choice_main_menu == '9':
+    elif choice_main_menu == '9':
         print('Exiting program..')
         break
