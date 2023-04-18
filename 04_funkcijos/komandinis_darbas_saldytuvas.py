@@ -30,6 +30,9 @@ Tada programa turėtų:
 import time
 import os
 
+solid_products = {}
+liquid_products = {}
+meals = {}
 products = {'milk': 2, 'fish': 5, 'beer': 4}
 
 def view_product_list():
