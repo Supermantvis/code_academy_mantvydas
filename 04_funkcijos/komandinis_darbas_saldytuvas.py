@@ -40,7 +40,7 @@ def view_product_list(item_dict):
 
 
 def remove_if_zero(item_dict):
-    empty_products = [product for product, details in item_dict.items() if details['weight'] == 0]
+    empty_products = [product for product, details in item_dict.items() if details == 0]
     for product in empty_products:
         del item_dict[product]
     if empty_products:
@@ -78,7 +78,8 @@ def remove_product(product_dict, product_name, count_reduce=0):
             print(f"{product_name} removed successfully")
         else:
             product_dict[product_name] -= count_reduce
-            print(f"{product_name} count successfully changed by {count_reduce}")
+            print(f"{product_name} count lowered by {count_reduce} (Removed if reaches 0)")
+            remove_if_zero(products)
     else:
         print(f"{product_name} is not in the fridge")
 
