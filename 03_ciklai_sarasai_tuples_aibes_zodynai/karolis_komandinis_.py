@@ -109,4 +109,4 @@ while True:
 os.system("cls" if os.name == "nt" else "clear")
 
 # Print a message indicating that the program has exited
-print("Program exited.")
+print("Program exitedsS.")
