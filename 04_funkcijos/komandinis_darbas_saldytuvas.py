@@ -124,7 +124,7 @@ def check_recipe(products):
             missing_items[item] = products[item] - quantity
     if max_servings == 0 or missing_items:
         print(f"You can't make any servings, you don't have enough ingredients")
-        print("You are missing the following ingredients to make this recipe:")
+        print("You are missing the following ingredients:")
         for item, quantity in missing_items.items():
             print(f"{item}:{abs(quantity)}")
         return
