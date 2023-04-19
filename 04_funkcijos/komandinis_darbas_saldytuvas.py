@@ -32,12 +32,10 @@ import os
 
 products = {'milk': 2.0, 'fish': 5.0, 'beer': 4.0}
 
-
 def view_product_list(item_dict):  # Karolis Venckus
     print("Product List:")
     for item_name, item_weight in item_dict.items():
         print(f"{item_name}: {item_weight}")
-
 
 def remove_if_zero(item_dict):   # Karolis Venckus
     empty_products = [product for product, details in item_dict.items() if details == 0]
@@ -46,7 +44,6 @@ def remove_if_zero(item_dict):   # Karolis Venckus
         del item_dict[product]
     if empty_products:
         print(f"{', '.join(empty_products)} removed from the product list.")
-
 
 # ------------------- ADD_PRODUCT -----------------------------
 # Funkcija pridėjimo į sąrašą. Jei toks produktas egzistuoja
@@ -82,7 +79,6 @@ def remove_product(product_dict, product_name, count_reduce=0): # Karolis Jasada
     else:
         print(f"{product_name} is not in the fridge")
 
-
 def calculate_fridge_mass(products_list):  # Milda Auglytė
     items_mass = 0
     for item in products_list:
@@ -94,14 +90,12 @@ def calculate_fridge_mass(products_list):  # Milda Auglytė
 # if remove_product_name in products:
 #     reduction = input("Enter the amount you want to reduce (leave blank for complete removal): ")
 #     if len(reduction) == 0: # Patikriname ką iveda vartotojas/ar paliko tuščią
-#         reduction = 0.0
 #     else:
 #         reduction = float(reduction) # Konvertuojame įvestą string
 #     products = remove_product(products, remove_product_name, count_reduce=reduction)
 #     print("Updated product list:", products)
 # else:
 #     print(f"{remove_product} is not in the product list.")
-
 
 def calculate_fridge_mass(products):  # Milda Auglytė
     products_list = list(products.values())
@@ -110,8 +104,6 @@ def calculate_fridge_mass(products):  # Milda Auglytė
         items_kg = items_kg + item
     return items_kg
 
-
-# milk: 1, fish: 2
 def check_recipe(products):
     recipe = input("Enter the recipe in the format 'ingredient: quantity' (e.g. 'apple: 2'):\n")
     recipe_dict = {}
@@ -150,7 +142,6 @@ def check_recipe(products):
         for item, quantity in recipe_dict.items():
             products[item] -= quantity * servings
 
-
 while True:
     os.system('cls')
     print('----------[ FRIDGE ]----------\n')
@@ -162,13 +153,11 @@ while True:
     print('Choose 9 if you want to close the fridge.')
     choice_main_menu = input('Choose: ')
 
-
     if choice_main_menu == '1':  # view product list
         os.system('cls')
         remove_if_zero(products)
         view_product_list(products)
         input('Smash ENTER to continue: ')
-
 
     elif choice_main_menu == '2':  # add product
         os.system('cls')
@@ -176,7 +165,6 @@ while True:
         product_count = float(input("Enter the amount you are adding: "))
         add_product(products, added_product, product_count)
         input('Smash ENTER to continue: ')
-
 
     elif choice_main_menu == '3':  # remove product
         os.system('cls')
@@ -189,12 +177,10 @@ while True:
             remove_product(products, product_name, count_reduce=0)
         input('Smash ENTER to continue: ')
 
-
     elif choice_main_menu == '4':  # count total mass of products.
         os.system('cls')
         print('\033[96mTotal fridge mass:\033[0m', calculate_fridge_mass(products))
         input('smash ENTER to continue: ')
-
 
     elif choice_main_menu == '5':  # recipe check.
         os.system('cls')
@@ -202,7 +188,6 @@ while True:
         # print('Available ingredients: ', view_product_list(products))
         check_recipe(products)
         input('Smash ENTER to continue: ')
-
 
     elif choice_main_menu == '9':
         print('Closing fridge..')
