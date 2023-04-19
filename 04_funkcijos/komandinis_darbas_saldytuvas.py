@@ -139,7 +139,10 @@ def check_recipe(products):
     else:
         print(f"You can make up to {max_servings} servings with the ingredients you have.")
     servings = int(input("Enter the number of servings:\n"))
-    if not len(missing_items) > 0:
+    if servings > max_servings:
+        print(f"Can't make more than {max_servings} servings, not enough ingredients")
+        return
+    elif not len(missing_items) > 0:
         print("You have enough ingredients to make this recipe.")
         print(f"You used No. of {servings} servings of the following ingredients:")
         for item, quantity in recipe_dict.items():
