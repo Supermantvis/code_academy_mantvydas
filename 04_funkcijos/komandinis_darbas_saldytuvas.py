@@ -117,6 +117,7 @@ def calculate_fridge_mass(products):  # Milda Auglytė
 def check_recipe(products):
     recipe = input("Enter the recipe in the format 'ingredient: quantity' (e.g. 'apple: 2'):\n")
     recipe_dict = {}
+    missing_items = {}
     for item in recipe.split(','):
         item_list = item.split(':')
         recipe_dict[item_list[0].strip()] = float(item_list[1].strip())
@@ -126,22 +127,20 @@ def check_recipe(products):
     for item, quantity in recipe_dict.items() # Only consider ingredients that are in the fridge
     if item in products
 ])
-    if max_servings == 0:
+    for item, quantity in recipe_dict.items():
+        if item not in products:
+            missing_items[item] = quantity
+        elif products[item] < quantity:
+            missing_items[item] = products[item] - quantity
+    if max_servings == 0 or missing_items:
         print(f"You can't make any servings, you don't have enough ingredients")
+        print("You are missing the following ingredients to make this recipe:")
+        for item, quantity in missing_items.items():
+            print(f"{item}:{abs(quantity)}")
         return
     else:
         print(f"You can make up to {max_servings} servings with the ingredients you have.")
     servings = int(input("Enter the number of servings:\n"))
-    missing_items = {}
-    for item, quantity in recipe_dict.items():
-        if item not in products:
-            missing_items[item] = quantity * servings
-        elif products[item] < quantity * servings:
-            missing_items[item] = products[item] - quantity * servings
-    if missing_items:
-        print("You missing the following ingredients to make this recipe:")
-        for item, quantity in missing_items.items():
-            print(f"{item}:{abs(quantity)}")
     if not len(missing_items) > 0:
         print("You have enough ingredients to make this recipe.")
         print(f"You used {servings} servings of the following ingredients:")
