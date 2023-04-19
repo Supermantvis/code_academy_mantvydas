@@ -130,15 +130,13 @@ def check_recipe(products):
         print("You don't have enough of the following ingredients to make this recipe:")
         for item, quantity in missing_items.items():
             print(f"{item}:{quantity}")
-    print("You have enough ingredients to make this recipe.")
     for item, quantity in recipe_dict.items():
         products[item] -= quantity * servings
     if not len(missing_items) > 0:
-        decision_to_take_out = input("Do you wanna take out products for recipe (yes / no)?: ")
-        if decision_to_take_out == 'yes':    
-            print(f"You used {servings} servings of the following ingredients:")
-            for item, quantity in recipe_dict.items():
-                print(f"{item}: {quantity * servings:.2f}")
+        print("You have enough ingredients to make this recipe.")
+        print(f"You used {servings} servings of the following ingredients:")
+        for item, quantity in recipe_dict.items():
+            print(f"{item}: {quantity * servings:.2f}")
 
 
 # def shopping_list(products):
@@ -188,7 +186,7 @@ while True:
     elif choice_main_menu == '3':  # remove product
         os.system('cls')
         product_name = input("Enter product name you wish to take: ")
-        deleting = input("Choose your option\n 1: Delete \n 2: Redaguoti\n")
+        deleting = input("Choose your option\n 1: Take all \n 2: Ammount\n")
         if deleting == '2':
             product_count = float(input("Enter the amount you are taking: "))
             remove_product(products, product_name, count_reduce=product_count)
