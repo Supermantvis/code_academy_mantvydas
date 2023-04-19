@@ -127,16 +127,16 @@ def check_recipe(products):
         elif products[item] < quantity * servings:
             missing_items[item] = products[item] - quantity * servings
     if missing_items:
-        print("You don't have enough of the following ingredients to make this recipe:")
+        print("You missing the following ingredients to make this recipe:")
         for item, quantity in missing_items.items():
-            print(f"{item}:{quantity}")
-    for item, quantity in recipe_dict.items():
-        products[item] -= quantity * servings
+            print(f"{item}:{abs(quantity)}")
     if not len(missing_items) > 0:
         print("You have enough ingredients to make this recipe.")
         print(f"You used {servings} servings of the following ingredients:")
         for item, quantity in recipe_dict.items():
             print(f"{item}: {quantity * servings:.2f}")
+        for item, quantity in recipe_dict.items():
+            products[item] -= quantity * servings
 
 
 # def shopping_list(products):
