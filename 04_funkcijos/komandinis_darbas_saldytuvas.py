@@ -129,7 +129,7 @@ def check_recipe(products):
     if missing_items:
         print("You missing the following ingredients to make this recipe:")
         for item, quantity in missing_items.items():
-            print(f"{item}:{abs(quantity)}")
+            print(f"\033[91m{item}\033[0m: \033[91m{abs(quantity)}\033[0m")  # "\033[91m{}\033[0m"
     if not len(missing_items) > 0:
         print("You have enough ingredients to make this recipe.")
         print(f"You used {servings} servings of the following ingredients:")
