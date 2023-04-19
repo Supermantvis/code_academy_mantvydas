@@ -30,6 +30,7 @@ Tada programa turėtų:
 
 import time
 import os
+import sys
 
 products = {'milk': 2.0, 'fish': 5.0, 'beer': 4.0}
 
@@ -115,11 +116,22 @@ def calculate_fridge_mass(products):  # Milda Auglytė
 # milk: 1, fish: 2
 def check_recipe(products):
     recipe = input("Enter the recipe in the format 'ingredient: quantity' (e.g. 'apple: 2'):\n")
-    servings = int(input("Enter the number of servings:\n"))
     recipe_dict = {}
     for item in recipe.split(','):
         item_list = item.split(':')
         recipe_dict[item_list[0].strip()] = float(item_list[1].strip())
+    max_servings = min([
+    # Iterate over the ingredients in the recipe
+    int(products[item] // quantity) # Calculate how many servings can be made with each ingredient
+    for item, quantity in recipe_dict.items() # Only consider ingredients that are in the fridge
+    if item in products
+])
+    if max_servings == 0:
+        print(f"You can't make any servings, you don't have enough ingredients")
+        return
+    else:
+        print(f"You can make up to {max_servings} servings with the ingredients you have.")
+    servings = int(input("Enter the number of servings:\n"))
     missing_items = {}
     for item, quantity in recipe_dict.items():
         if item not in products:
