@@ -117,7 +117,6 @@ def calculate_fridge_mass(products):  # Milda Auglytė
 def check_recipe(products):
     recipe = input("Enter the recipe in the format 'ingredient: quantity' (e.g. 'apple: 2'):\n")
     recipe_dict = {}
-    missing_items = {}
     for item in recipe.split(','):
         item_list = item.split(':')
         recipe_dict[item_list[0].strip()] = float(item_list[1].strip())
@@ -127,6 +126,7 @@ def check_recipe(products):
     for item, quantity in recipe_dict.items() # Only consider ingredients that are in the fridge
     if item in products
 ])
+    missing_items = {}
     for item, quantity in recipe_dict.items():
         if item not in products:
             missing_items[item] = quantity
