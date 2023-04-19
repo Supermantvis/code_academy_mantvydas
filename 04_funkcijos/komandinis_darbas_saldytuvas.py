@@ -188,8 +188,12 @@ while True:
     elif choice_main_menu == '3':  # remove product
         os.system('cls')
         product_name = input("Enter product name you wish to take: ")
-        product_name_count = float(input("Enter the amount of product you're taking out: "))
-        remove_product(products, product_name, product_name_count)  # NEED TO FIX
+        deleting = input("Choose your option\n 1: Delete \n 2: Redaguoti\n")
+        if deleting == '2':
+            product_count = float(input("Enter the amount you are taking: "))
+            remove_product(products, product_name, count_reduce=product_count)
+        else:
+            remove_product(products, product_name, count_reduce=0)
         input('Smash ENTER to continue: ')
 
 
