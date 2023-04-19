@@ -148,23 +148,6 @@ def check_recipe(products):
             products[item] -= quantity * servings
 
 
-# def shopping_list(products):
-#     print("Shopping list:")
-#     for item, data in products.items():
-#         if data['weight'] <= 0:
-#             print(f"{item}: {abs(data['weight']):.2f} {PRODUCT_TYPES[item]}")
-
-# def num_dishes(products):
-#     num_dishes = float('inf')
-#     for item, data in products.items():
-#         if item not in DISHES:
-#             continue
-#         if data['weight'] <= 0:
-#             return 0
-#         num_dishes = min(num_dishes, data['weight'] // DISHES[item])
-#     return int(num_dishes)
-
-
 while True:
     os.system('cls')
     print('----------[ FRIDGE ]----------\n')
@@ -173,7 +156,7 @@ while True:
     print('Choose 3 if you want to remove product.')
     print('Choose 4 if you want to count total mass of products.')
     print('Choose 5 if you want to check recipies.')
-    print('Choose 9 if you want to exit program.')
+    print('Choose 9 if you want to close the fridge.')
     choice_main_menu = input('Choose: ')
 
 
@@ -219,5 +202,5 @@ while True:
 
 
     elif choice_main_menu == '9':
-        print('Exiting program..')
+        print('Closing fridge..')
         break
