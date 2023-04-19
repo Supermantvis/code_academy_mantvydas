@@ -28,9 +28,7 @@ Tada programa turėtų:
 - išvesti, kelioms porcijoms užtenka ingredientų, jei yra perteklius
 '''
 
-import time
 import os
-import sys
 
 products = {'milk': 2.0, 'fish': 5.0, 'beer': 4.0}
 
@@ -59,7 +57,7 @@ def add_product(product_dict, product_name, count):  # Karolis Jasadavičius
     # if product is liquid unit == litres (l)
     if product_name in product_dict:
         product_dict[product_name] += count
-        print(f"{product_name} count changed successfully)")
+        print(f"{product_name} count changed successfully")
     else:
         product_dict[product_name] = count
     # Pavyzdys patikrinimui su user input'ais.
@@ -144,7 +142,7 @@ def check_recipe(products):
             print(f"\033[91m{item}\033[0m: \033[91m{abs(quantity)}\033[0m")  # "\033[91m{}\033[0m"
     if not len(missing_items) > 0:
         print("You have enough ingredients to make this recipe.")
-        print(f"You used {servings} servings of the following ingredients:")
+        print(f"You used No. of {servings} servings of the following ingredients:")
         for item, quantity in recipe_dict.items():
             print(f"{item}: {quantity * servings:.2f}")
         for item, quantity in recipe_dict.items():
