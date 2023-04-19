@@ -28,9 +28,7 @@ Tada programa turėtų:
 - išvesti, kelioms porcijoms užtenka ingredientų, jei yra perteklius
 '''
 
-import time
 import os
-import sys
 
 products = {'milk': 2.0, 'fish': 5.0, 'beer': 4.0}
 
@@ -59,7 +57,7 @@ def add_product(product_dict, product_name, count):  # Karolis Jasadavičius
     # if product is liquid unit == litres (l)
     if product_name in product_dict:
         product_dict[product_name] += count
-        print(f"{product_name} count changed successfully)")
+        print(f"{product_name} count changed successfully")
     else:
         product_dict[product_name] = count
     # Pavyzdys patikrinimui su user input'ais.
@@ -146,28 +144,11 @@ def check_recipe(products):
         return
     elif not len(missing_items) > 0:
         print("You have enough ingredients to make this recipe.")
-        print(f"You used {servings} servings of the following ingredients:")
+        print(f"You used No. of {servings} servings of the following ingredients:")
         for item, quantity in recipe_dict.items():
             print(f"{item}: {quantity * servings:.2f}")
         for item, quantity in recipe_dict.items():
             products[item] -= quantity * servings
-
-
-# def shopping_list(products):
-#     print("Shopping list:")
-#     for item, data in products.items():
-#         if data['weight'] <= 0:
-#             print(f"{item}: {abs(data['weight']):.2f} {PRODUCT_TYPES[item]}")
-
-# def num_dishes(products):
-#     num_dishes = float('inf')
-#     for item, data in products.items():
-#         if item not in DISHES:
-#             continue
-#         if data['weight'] <= 0:
-#             return 0
-#         num_dishes = min(num_dishes, data['weight'] // DISHES[item])
-#     return int(num_dishes)
 
 
 while True:
@@ -178,7 +159,7 @@ while True:
     print('Choose 3 if you want to remove product.')
     print('Choose 4 if you want to count total mass of products.')
     print('Choose 5 if you want to check recipies.')
-    print('Choose 9 if you want to exit program.')
+    print('Choose 9 if you want to close the fridge.')
     choice_main_menu = input('Choose: ')
 
 
@@ -224,5 +205,5 @@ while True:
 
 
     elif choice_main_menu == '9':
-        print('Exiting program..')
+        print('Closing fridge..')
         break
