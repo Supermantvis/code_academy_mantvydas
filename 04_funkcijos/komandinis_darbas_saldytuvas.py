@@ -30,6 +30,12 @@ Tada programa turėtų:
 
 import os
 
+def clear():
+    if os.name == 'nt':
+        os.system('cls')
+    else:
+        os.system('clear')
+
 products = {'milk': 2.0, 'fish': 5.0, 'beer': 4.0}
 
 def view_product_list(item_dict):  # Karolis Venckus
@@ -39,34 +45,18 @@ def view_product_list(item_dict):  # Karolis Venckus
 
 def remove_if_zero(item_dict):   # Karolis Venckus
     empty_products = [product for product, details in item_dict.items() if details == 0]
-
     for product in empty_products:
         del item_dict[product]
     if empty_products:
         print(f"{', '.join(empty_products)} removed from the product list.")
 
-# ------------------- ADD_PRODUCT -----------------------------
-# Funkcija pridėjimo į sąrašą. Jei toks produktas egzistuoja
-# prie jo prideda count reikšmę
 def add_product(product_dict, product_name, count):  # Karolis Jasadavičius
-    # add products, 
-    # if product is solid unit == kg
-    # if product is liquid unit == litres (l)
     if product_name in product_dict:
         product_dict[product_name] += count
         print(f"{product_name} count changed successfully")
     else:
         product_dict[product_name] = count
-    # Pavyzdys patikrinimui su user input'ais.
-    # added_product = input("Enter product name you wish to add: ")
-    # product_count = float(input("Enter the amount you are adding: "))
-    # add_product(products, added_product, product_count)
-    # print(products)
 
-# ------------------- REMOVE_PRODUCT --------------------------
-# Funkcija produkto išėmimui iš sąrašo
-# Count_reduce naudojame, kaip kintamąjį su kurio atemame produkto kiekį,
-# jeigu paliekame 0, produktas istrinamas
 def remove_product(product_dict, product_name, count_reduce=0): # Karolis Jasadavičius
     if product_name in product_dict:
         if count_reduce == 0:
@@ -79,24 +69,6 @@ def remove_product(product_dict, product_name, count_reduce=0): # Karolis Jasada
     else:
         print(f"{product_name} is not in the fridge")
 
-def calculate_fridge_mass(products_list):  # Milda Auglytė
-    items_mass = 0
-    for item in products_list:
-        items_mass = items_mass + item
-    return items_mass
-# ------------------- PAVYZDYS -------------------------------
-# print(products)
-# remove_product_name = input("Enter the name of the product to update: ")
-# if remove_product_name in products:
-#     reduction = input("Enter the amount you want to reduce (leave blank for complete removal): ")
-#     if len(reduction) == 0: # Patikriname ką iveda vartotojas/ar paliko tuščią
-#     else:
-#         reduction = float(reduction) # Konvertuojame įvestą string
-#     products = remove_product(products, remove_product_name, count_reduce=reduction)
-#     print("Updated product list:", products)
-# else:
-#     print(f"{remove_product} is not in the product list.")
-
 def calculate_fridge_mass(products):  # Milda Auglytė
     products_list = list(products.values())
     items_kg = 0
@@ -104,14 +76,13 @@ def calculate_fridge_mass(products):  # Milda Auglytė
         items_kg = items_kg + item
     return items_kg
 
-def check_recipe(products):
+def check_recipe(products):  # Karolis Venckus, Karolis Jasadavičius
     recipe = input("Enter the recipe in the format 'ingredient: quantity' (e.g. 'apple: 2'):\n")
     recipe_dict = {}
     for item in recipe.split(','):
         item_list = item.split(':')
         recipe_dict[item_list[0].strip()] = float(item_list[1].strip())
     max_servings = min([
-    # Iterate over the ingredients in the recipe
     int(products[item] // quantity) # Calculate how many servings can be made with each ingredient
     for item, quantity in recipe_dict.items() # Only consider ingredients that are in the fridge
     if item in products
@@ -179,13 +150,12 @@ while True:
 
     elif choice_main_menu == '4':  # count total mass of products.
         os.system('cls')
-        print('\033[96mTotal fridge mass:\033[0m', calculate_fridge_mass(products))
+        print('\033[96mTotal fridge mass:\033[0m', calculate_fridge_mass(products))  # Milda Auglytė
         input('smash ENTER to continue: ')
 
     elif choice_main_menu == '5':  # recipe check.
         os.system('cls')
         print('RECIPE CHECKING: ')
-        # print('Available ingredients: ', view_product_list(products))
         check_recipe(products)
         input('Smash ENTER to continue: ')
 
