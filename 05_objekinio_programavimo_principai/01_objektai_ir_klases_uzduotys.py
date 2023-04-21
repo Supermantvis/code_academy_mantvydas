@@ -7,25 +7,27 @@ Pakeisti darbuotojo atlyginimą.
 Atspausdinkite pilną darbuotojo informaciją.
 '''
 # class Darbuotojas:
-#     vardas = 'Jonas'
-#     pavardė = 'Jonaitis'
-#     pareigos = 'Programuotojas'
-#     atlyginimas = '900'
+#     def __init__(self, vardas, pavarde, pareigos, atlyginimas=1000):
+#         self.vardas = vardas
+#         self.pavarde = pavarde
+#         self.pareigos = pareigos
+#         self.atlyginimas = atlyginimas
 
-# darbuotojas = Darbuotojas()
+#     def __str__(self):
+#         return f'{self.vardas} {self.pavarde} {self.pareigos} {self.atlyginimas}'
+
+# darbuotojas = Darbuotojas('Jonas', 'Jonaitis', 'suvirintojas')
 
 # print(darbuotojas.pareigos)
 # print(darbuotojas.atlyginimas)
 
-# darb1 = darbuotojas.atlyginimas = 1500
+# darbuotojas.atlyginimas = 1200
+# print(darbuotojas.atlyginimas)
 
-# print('pakeistas atlyginimas: ', darbuotojas.atlyginimas)
-
-# # for key, value in darbuotojas.items():  # NEVEIKIA...
-# #     print(key, value)
+# print(darbuotojas)
 
 
-# SUGGESTED SOLUTION:
+# ******************* SUGGESTED SOLUTION: *******************
 # class Darbuotojas:
 #     def __init__(self, vardas, pavarde, pareigos, atlyginimas=1000):
 #         self.vardas = vardas
@@ -33,8 +35,8 @@ Atspausdinkite pilną darbuotojo informaciją.
 #         self.pareigos = pareigos
 #         self.atlyginimas = atlyginimas
 
-    # def __str__(self):
-    #     return f'{self.vardas} {self.pavarde}, pareigos: {self.pareigos}, atlyginimas: {self.atlyginimas}'
+#     def __str__(self):
+#         return f'{self.vardas} {self.pavarde}, pareigos: {self.pareigos}, atlyginimas: {self.atlyginimas}'
 
 # darbuotojas = Darbuotojas('Jonas', 'Jonaitis', 'Programuotojas', 2000)
 
@@ -55,52 +57,35 @@ Sukurkite objektą su jūsų pasirinktomis reikšmėmis.
 Atspausdinkite objektą.
 Pakeiskite kelis kartus gyvūno svorį ir amžių naudojant sukurtus metodus ir po kiekvieno pakeitimo atspausdinkite.
 '''
-
 # class Gyvunas:
-#     def __init__(self, vardas, amzius, svoris):
+#     def __init__(self, vardas='Bungis', amzius=25, svoris=60):
 #         self.vardas = vardas
 #         self.amzius = amzius
 #         self.svoris = svoris
 
 #     def __str__(self):
-#         return f'Vardas: {gyvunas.vardas}, Amzius: {gyvunas.amzius}, Svoris: {gyvunas.svoris}'
+#         return f'Vardas: {self.vardas} | Amzius: {self.amzius} | Svoris: {self.svoris}'
 
-#     def dididnti_svori(self, kiekis):  # isoreje galima iskarto kviesti taip: print(gyvunas.dididnti_svori(2))
-#         self.svoris += kiekis  # KO GERO SITAS VARIANTAS YRA GERESNIS...
-#         return self.svoris
-    
-#     # def dididnti_svori(self, kiekis):  # isoreje pirma reikia ivykdyti operacija: gyvunas.dididnti_svori(2)
-#     #     self.svoris += kiekis  # ir tik paskiau atvaizduoti: print(gyvunas.svoris)
-    
-#     # def mazinti_svori(self, kiekis):  # isoreje galima iskarto kviesti taip: print(gyvunas.mazinti_svori(2))
-#     #     self.svoris -= kiekis
-#     #     return self.svoris
-    
-#     def mazinti_svori(self, kiekis):  # isoreje pirma reikia ivykdyti operacija: gyvunas.mazinti_svori(2)
-#         self.svoris -= kiekis  # ir tik paskiau atvaizduoti: print(gyvunas.svoris)
+#     def sumazinti_svori(self, pokytis):
+#         return self.svoris - pokytis
 
-#     def gimtadienis(self, kiekis):
-#         self.amzius += kiekis
-#         return self.amzius
+#     def padidinti_svori(self, pokytis):
+#         return self.svoris + pokytis
 
+# gyvunas = Gyvunas()
+# print(gyvunas)
 
-# gyvunas = Gyvunas('Toto', 13, 120)  # objekto sukurimas
-# print(f'Pirmas objekto aprasymas{gyvunas}')
-# print(f'Didinam svori: {gyvunas.dididnti_svori(2)}')
-# gyvunas.mazinti_svori(2)
-# print(f'Mazinam svori: {gyvunas.svoris}')
-# print(f'Svenciam gimtadieni: {gyvunas.gimtadienis(10)}')
+# gyvunas.svoris = gyvunas.sumazinti_svori(2)
+# print(gyvunas)
+
+# gyvunas.svoris = gyvunas.padidinti_svori(4)
+# print(gyvunas)
+
+# gyvunas = Gyvunas('Toto', 7, 20)
+# print(gyvunas)
 
 
-# gyvunas = Gyvunas('ALFA', 5, 10)
-# print(f'Antras objekto aprasymas{gyvunas}')
-# print(f'Didinam svori: {gyvunas.dididnti_svori(2)}')
-# gyvunas.mazinti_svori(2)
-# print(f'Mazinam svori: {gyvunas.svoris}')
-# print(f'Svenciam gimtadieni: {gyvunas.gimtadienis(10)}')
-
-
-# SUGGESTED SOLUTION:
+# ******************* SUGGESTED SOLUTION: *******************
 # class Gyvunas:
 #     def __init__(self, vardas, amzius, svoris):
 #         self.vardas = vardas
