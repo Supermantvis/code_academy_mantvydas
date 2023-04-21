@@ -12,8 +12,8 @@ import random
 #     else:
 #         print("kazkokia nesamone ivedei, krc bandyk  dar karta..\n")
 
-
-def komandu_paskirstytojas(): # programele sugeneruoti komandas atsitikine tvarka
+# programele sugeneruoti komandas atsitikine tvarka
+def komandu_paskirstytojas(): 
     zmogeliukai = [
 ]
 
