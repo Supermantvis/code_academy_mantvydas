@@ -15,27 +15,7 @@ import random
 
 def komandu_paskirstytojas(): # programele sugeneruoti komandas atsitikine tvarka
     zmogeliukai = [
-    "Raimonda Anisimova",
-    "Žygimantas Bičkus",
-    "Jūratė Krupavičienė",
-    "Karolis Tamulevičius",
-    "Andrius Mačaitis",
-    "Renaldas Zvėga",
-    "Milda Auglytė",
-    "Karolis Venckus",
-    "Mantvydas Račickas",
-    "Robertas Sapronavičius",
-    "Deividas Skestenis",
-    "Karolis Jasadavičius",
-    "Andrius Gedvilas",
-    "Tadas Zupka",
-    "Bronius Grigaras",
-    "Evelina Stonytė",
-    "Petras Anskaitis",
-    "Darius Kašėta",
-    "Erikas Jankauskas",
-    "Alan Žink",
-    "Loreta Papučkaitė"]
+]
 
 """
 TEAM LEADS:
