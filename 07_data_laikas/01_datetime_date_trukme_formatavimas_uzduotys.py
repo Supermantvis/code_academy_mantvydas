@@ -1,0 +1,1 @@
+# testukas pakeiciant failo contenta, kad merginti pakeitima i main branch.
