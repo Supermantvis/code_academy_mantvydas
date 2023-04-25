@@ -68,31 +68,31 @@ import calendar
 
 # CHATGPT SOLUTION:
 # loop through all the months of the year
-# for month in range(1, 13):
-#     # get the number of days in the month and the day of the week the month starts on
-#     days_in_month, starting_day = calendar.monthrange(2023, month)
-#     # loop through each day of the month
-#     for day in range(1, days_in_month+1):
-#         # print the day
-#         print(day)
+for month in range(1, 13):
+    # get the number of days in the month and the day of the week the month starts on
+    days_in_month, starting_day = calendar.monthrange(2023, month)
+    # loop through each day of the month
+    for day in range(1, days_in_month+1):
+        # print the day
+        print(day)
 
 
 # SUGGESTED SOLUTION:
-# def spausdinti_menesio_kalendoriu_ir_savaitgaliu_skaiciu(metai, menesis):
-#     print(calendar.month(metai, menesis))
+def spausdinti_menesio_kalendoriu_ir_savaitgaliu_skaiciu(metai, menesis):
+    print(calendar.month(metai, menesis))
 
-#     _, menesio_ilgis = calendar.monthrange(metai, menesis)  # monthrange output (5, 30)
+    _, menesio_ilgis = calendar.monthrange(metai, menesis)  # monthrange output (5, 30)
 
-#     savaitgaliu_skaicius = 0
-#     for diena in range(1, menesio_ilgis + 1):
-#         savaites_diena = calendar.weekday(metai, menesis, diena)
-#         if savaites_diena == 5 or savaites_diena == 6:
-#             savaitgaliu_skaicius += 1
+    savaitgaliu_skaicius = 0
+    for diena in range(1, menesio_ilgis + 1):
+        savaites_diena = calendar.weekday(metai, menesis, diena)
+        if savaites_diena == 5 or savaites_diena == 6:
+            savaitgaliu_skaicius += 1
 
-#     print(f"Savaitgalių skaičius šiame mėnesyje: {savaitgaliu_skaicius}")
+    print(f"Savaitgalių skaičius šiame mėnesyje: {savaitgaliu_skaicius}")
 
-# # Pavyzdys su 2023-ųjų balandžio mėnesiu
-# spausdinti_menesio_kalendoriu_ir_savaitgaliu_skaiciu(2023, 4)
+# Pavyzdys su 2023-ųjų balandžio mėnesiu
+spausdinti_menesio_kalendoriu_ir_savaitgaliu_skaiciu(2023, 4)
 
 
-# print(calendar.monthrange(2023, 4))
+print(calendar.monthrange(2023, 4))
