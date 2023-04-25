@@ -35,6 +35,8 @@ products = {}
 
 with open("duomenys.json", "r") as f:
     products = json.load(f)
+        
+    
 
 def view_product_list(item_dict):  # Karolis Venckus
     print("Product List:")
