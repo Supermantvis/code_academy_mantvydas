@@ -31,20 +31,28 @@ Tada programa turėtų:
 import os
 import json
 
+
 products = {}
 
 with open("duomenys.json", "r") as f:
     products = json.load(f)
+
+def clear():
+    if os.name == 'nt':
+        os.system('cls')
+    else:
+        os.system('clear')
+
+products = {'milk': 2.0, 'fish': 5.0, 'beer': 4.0}
+
 
 def view_product_list(item_dict):  # Karolis Venckus
     print("Product List:")
     for item_name, item_weight in item_dict.items():
         print(f"{item_name}: {item_weight}")
 
-
 def remove_if_zero(item_dict):   # Karolis Venckus
     empty_products = [product for product, details in item_dict.items() if details == 0]
-
     for product in empty_products:
         del item_dict[product]
     if empty_products:
@@ -52,19 +60,13 @@ def remove_if_zero(item_dict):   # Karolis Venckus
     with open("duomenys.json", "w") as f:
         json.dump(item_dict, f)
 
-
-# ------------------- ADD_PRODUCT -----------------------------
-# Funkcija pridėjimo į sąrašą. Jei toks produktas egzistuoja
-# prie jo prideda count reikšmę
 def add_product(product_dict, product_name, count):  # Karolis Jasadavičius
-    # add products, 
-    # if product is solid unit == kg
-    # if product is liquid unit == litres (l)
     if product_name in product_dict:
         product_dict[product_name] += count
         print(f"{product_name} count changed successfully")
     else:
         product_dict[product_name] = count
+
     with open("duomenys.json", "w") as f:
         json.dump(product_dict, f)
     # Pavyzdys patikrinimui su user input'ais.
@@ -78,6 +80,9 @@ def add_product(product_dict, product_name, count):  # Karolis Jasadavičius
 # Funkcija produkto išėmimui iš sąrašo
 # Count_reduce naudojame, kaip kintamąjį su kurio atemame produkto kiekį,
 # jeigu paliekame 0, produktas istrinamas
+
+
+
 def remove_product(product_dict, product_name, count_reduce=0): # Karolis Jasadavičius
     if product_name in product_dict:
         if count_reduce == 0:
@@ -92,27 +97,6 @@ def remove_product(product_dict, product_name, count_reduce=0): # Karolis Jasada
     with open("duomenys.json", "w") as f:
         json.dump(product_dict, f)
 
-
-def calculate_fridge_mass(products_list):  # Milda Auglytė
-    items_mass = 0
-    for item in products_list:
-        items_mass = items_mass + item
-    return items_mass
-# ------------------- PAVYZDYS -------------------------------
-# print(products)
-# remove_product_name = input("Enter the name of the product to update: ")
-# if remove_product_name in products:
-#     reduction = input("Enter the amount you want to reduce (leave blank for complete removal): ")
-#     if len(reduction) == 0: # Patikriname ką iveda vartotojas/ar paliko tuščią
-#         reduction = 0.0
-#     else:
-#         reduction = float(reduction) # Konvertuojame įvestą string
-#     products = remove_product(products, remove_product_name, count_reduce=reduction)
-#     print("Updated product list:", products)
-# else:
-#     print(f"{remove_product} is not in the product list.")
-
-
 def calculate_fridge_mass(products):  # Milda Auglytė
     products_list = list(products.values())
     items_kg = 0
@@ -120,16 +104,13 @@ def calculate_fridge_mass(products):  # Milda Auglytė
         items_kg = items_kg + item
     return items_kg
 
-
-# milk: 1, fish: 2
-def check_recipe(products):
+def check_recipe(products):  # Karolis Venckus, Karolis Jasadavičius
     recipe = input("Enter the recipe in the format 'ingredient: quantity' (e.g. 'apple: 2'):\n")
     recipe_dict = {}
     for item in recipe.split(','):
         item_list = item.split(':')
         recipe_dict[item_list[0].strip()] = float(item_list[1].strip())
     max_servings = min([
-    # Iterate over the ingredients in the recipe
     int(products[item] // quantity) # Calculate how many servings can be made with each ingredient
     for item, quantity in recipe_dict.items() # Only consider ingredients that are in the fridge
     if item in products
@@ -142,7 +123,7 @@ def check_recipe(products):
             missing_items[item] = products[item] - quantity
     if max_servings == 0 or missing_items:
         print(f"You can't make any servings, you don't have enough ingredients")
-        print("You are missing the following ingredients to make this recipe:")
+        print("You are missing the following ingredients:")
         for item, quantity in missing_items.items():
             print(f"{item}:{abs(quantity)}")
         return
@@ -160,7 +141,6 @@ def check_recipe(products):
         for item, quantity in recipe_dict.items():
             products[item] -= quantity * servings
 
-
 while True:
     os.system('cls')
     print('----------[ FRIDGE ]----------\n')
@@ -172,13 +152,11 @@ while True:
     print('Choose 9 if you want to close the fridge.')
     choice_main_menu = input('Choose: ')
 
-
     if choice_main_menu == '1':  # view product list
         os.system('cls')
         remove_if_zero(products)
         view_product_list(products)
         input('Smash ENTER to continue: ')
-
 
     elif choice_main_menu == '2':  # add product
         os.system('cls')
@@ -186,7 +164,6 @@ while True:
         product_count = float(input("Enter the amount you are adding: "))
         add_product(products, added_product, product_count)
         input('Smash ENTER to continue: ')
-
 
     elif choice_main_menu == '3':  # remove product
         os.system('cls')
@@ -199,20 +176,16 @@ while True:
             remove_product(products, product_name, count_reduce=0)
         input('Smash ENTER to continue: ')
 
-
     elif choice_main_menu == '4':  # count total mass of products.
         os.system('cls')
-        print('\033[96mTotal fridge mass:\033[0m', calculate_fridge_mass(products))
+        print('\033[96mTotal fridge mass:\033[0m', calculate_fridge_mass(products))  # Milda Auglytė
         input('smash ENTER to continue: ')
-
 
     elif choice_main_menu == '5':  # recipe check.
         os.system('cls')
         print('RECIPE CHECKING: ')
-        # print('Available ingredients: ', view_product_list(products))
         check_recipe(products)
         input('Smash ENTER to continue: ')
-
 
     elif choice_main_menu == '9':
         print('Closing fridge..')

@@ -14,39 +14,24 @@ import random
 
 # programele sugeneruoti komandas atsitikine tvarka
 def komandu_paskirstytojas(): 
-    zmogeliukai = [
-    "Raimonda Anisimova",
-    "Žygimantas Bičkus",
-    "Jūratė Krupavičienė",
-    "Karolis Tamulevičius",
-    "Andrius Mačaitis",
-    "Renaldas Zvėga",
-    "Milda Auglytė",
-    "Karolis Venckus",
-    "Mantvydas Račickas",
-    "Robertas Sapronavičius",
-    "Deividas Skestenis",
-    "Karolis Jasadavičius",
-    "Andrius Gedvilas",
-    "Tadas Zupka",
-    "Bronius Grigaras",
-    "Evelina Stonytė",
-    "Petras Anskaitis",
-    "Darius Kašėta",
-    "Erikas Jankauskas",
-    "Alan Žink"
-    ]
+    zmogeliukai = ['sasa'
+]
 
-    zmoniu_suma_sarase = len(zmogeliukai)
-    komandu_kiekis = 3
+"""
+TEAM LEADS:
 
-    while zmoniu_suma_sarase > 0:
-        komanda = random.sample(zmogeliukai, int(zmoniu_suma_sarase/komandu_kiekis))
-        for zmogus in komanda:
-            zmogeliukai.remove(zmogus)
-        zmoniu_suma_sarase -= int(zmoniu_suma_sarase/komandu_kiekis)
-        komandu_kiekis -= 1
-        print("\nKomanda Nr.", (3-komandu_kiekis), komanda)
+"""
+
+zmoniu_suma_sarase = len(zmogeliukai)
+komandu_kiekis = 3
+
+while zmoniu_suma_sarase > 0:
+    komanda = random.sample(zmogeliukai, int(zmoniu_suma_sarase/komandu_kiekis))
+    for zmogus in komanda:
+        zmogeliukai.remove(zmogus)
+    zmoniu_suma_sarase -= int(zmoniu_suma_sarase/komandu_kiekis)
+    komandu_kiekis -= 1
+    print("\nKomanda Nr.", (3-komandu_kiekis), komanda)
 
 
 # zaidimukas_atspek_skaiciu()
