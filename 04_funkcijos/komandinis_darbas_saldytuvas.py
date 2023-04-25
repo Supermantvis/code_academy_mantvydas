@@ -29,6 +29,13 @@ Tada programa turėtų:
 '''
 
 import os
+import json
+
+
+products = {}
+
+with open("duomenys.json", "r") as f:
+    products = json.load(f)
 
 def clear():
     if os.name == 'nt':
@@ -37,6 +44,7 @@ def clear():
         os.system('clear')
 
 products = {'milk': 2.0, 'fish': 5.0, 'beer': 4.0}
+
 
 def view_product_list(item_dict):  # Karolis Venckus
     print("Product List:")
@@ -49,6 +57,8 @@ def remove_if_zero(item_dict):   # Karolis Venckus
         del item_dict[product]
     if empty_products:
         print(f"{', '.join(empty_products)} removed from the product list.")
+    with open("duomenys.json", "w") as f:
+        json.dump(item_dict, f)
 
 def add_product(product_dict, product_name, count):  # Karolis Jasadavičius
     if product_name in product_dict:
@@ -56,6 +66,22 @@ def add_product(product_dict, product_name, count):  # Karolis Jasadavičius
         print(f"{product_name} count changed successfully")
     else:
         product_dict[product_name] = count
+
+    with open("duomenys.json", "w") as f:
+        json.dump(product_dict, f)
+    # Pavyzdys patikrinimui su user input'ais.
+    # added_product = input("Enter product name you wish to add: ")
+    # product_count = float(input("Enter the amount you are adding: "))
+    # add_product(products, added_product, product_count)
+    # print(products)
+    
+
+# ------------------- REMOVE_PRODUCT --------------------------
+# Funkcija produkto išėmimui iš sąrašo
+# Count_reduce naudojame, kaip kintamąjį su kurio atemame produkto kiekį,
+# jeigu paliekame 0, produktas istrinamas
+
+
 
 def remove_product(product_dict, product_name, count_reduce=0): # Karolis Jasadavičius
     if product_name in product_dict:
@@ -68,6 +94,8 @@ def remove_product(product_dict, product_name, count_reduce=0): # Karolis Jasada
             remove_if_zero(products)
     else:
         print(f"{product_name} is not in the fridge")
+    with open("duomenys.json", "w") as f:
+        json.dump(product_dict, f)
 
 def calculate_fridge_mass(products):  # Milda Auglytė
     products_list = list(products.values())
