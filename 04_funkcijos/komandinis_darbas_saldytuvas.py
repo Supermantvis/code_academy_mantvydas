@@ -28,7 +28,19 @@ Tada programa turėtų:
 - išvesti, kelioms porcijoms užtenka ingredientų, jei yra perteklius
 '''
 
+'''
+PAPILDYMAS:
+Naudojant json:
+paleidus programą, jeigu randamas šaldytuvo json failas, jį nuskaityti ir užpildyti šaldytuvą jo turiniu.
+Uždarant programą, atnaujinti šaldytuvo json failo turinį esamu šaldytuvo turiniu.
+'''
+import json
 import os
+import os.path
+
+path = '04_funkcijos/saldytuvo_turinys.json'
+check_file = os.path.isfile(path)
+products = {}
 
 def clear():
     if os.name == 'nt':
@@ -36,7 +48,19 @@ def clear():
     else:
         os.system('clear')
 
-products = {'milk': 2.0, 'fish': 5.0, 'beer': 4.0}
+def json_i_saldytuva():
+    # paleidus programą, jeigu randamas šaldytuvo json failas, jį nuskaityti ir užpildyti šaldytuvą jo turiniu
+    if check_file:
+        with open("04_funkcijos/saldytuvo_turinys.json", "r", encoding="utf-8") as f:
+            products = json.load(f)
+            return products
+
+products = json_i_saldytuva()
+
+def saldytuvas_i_json():
+    # Uždarant programą, atnaujinti šaldytuvo json failo turinį esamu šaldytuvo turiniu.
+    with open("04_funkcijos/saldytuvo_turinys.json", "w", encoding="utf-8") as f:
+        json.dump(products, f)
 
 def view_product_list(item_dict):  # Karolis Venckus
     print("Product List:")
@@ -160,5 +184,6 @@ while True:
         input('Smash ENTER to continue: ')
 
     elif choice_main_menu == '9':
+        saldytuvas_i_json()
         print('Closing fridge..')
         break
