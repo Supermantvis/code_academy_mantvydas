@@ -29,14 +29,31 @@ Tada programa turėtų:
 '''
 
 '''
-PAPILDYMAS:
+PAPILDYMAS 1:
 Naudojant json:
 paleidus programą, jeigu randamas šaldytuvo json failas, jį nuskaityti ir užpildyti šaldytuvą jo turiniu.
 Uždarant programą, atnaujinti šaldytuvo json failo turinį esamu šaldytuvo turiniu.
 '''
+
+'''
+PAPILDYMAS 2:
+Patobulinkite savo šaldytuvo programą:
+
+Gaudykite visas galimas vartotojo sąsajos klaidas, ypač įvedant kiekius.
+Šaldytuvo saugojimo į failą/ištraukimo iš failo klaidų gaudymą galite įgyvendinti per try except.
+Sukurkite loggerį, kuris į failą kauptų informaciją apie įdėtus ir išimtus produktus su kiekiais, ir veiksmo data/laiku.
+'''
+import logging
 import json
 import os
 import os.path
+
+logging.basicConfig(
+    filename='./04_funkcijos/saldytuvo_logeris.log', 
+    encoding='UTF-8', 
+    level=logging.INFO,
+    format='TIME: %(asctime)s; LOGGER NAME: %(name)s; LOG LEVEL: %(levelname)s; MESSAGE: %(message)s; LINE NO: %(lineno)d; FUNCTION: %(funcName)s'
+)
 
 path = '04_funkcijos/saldytuvo_turinys.json'
 check_file = os.path.isfile(path)
@@ -75,11 +92,34 @@ def remove_if_zero(item_dict):   # Karolis Venckus
         print(f"{', '.join(empty_products)} removed from the product list.")
 
 def add_product(product_dict, product_name, count):  # Karolis Jasadavičius
-    if product_name in product_dict:
+    try:
+        count = float(count)
         product_dict[product_name] += count
-        print(f"{product_name} count changed successfully")
-    else:
+    except ValueError as ve:
+        print(f"{count}, not a number")
+        logging.info(f"{count}, not a number. {ve}")
+    except KeyError as ke:
         product_dict[product_name] = count
+        print(f"{product_name} count added successfully")
+        logging.info(f"product: {product_name} has been added. ammount {count}. this is key error: {ke}")
+    else:
+        print(f"{product_name} count updated successfully")
+        logging.info(f"Existing product count changed to: {product_dict[product_name]}.")
+
+# def remove_product(product_dict, product_name, count_reduce=0):  # BBZ try except shit ....
+#     try:
+#         count_reduce = float(count_reduce)
+#         if count_reduce == 0:
+#             del product_dict[product_name]
+#             print(f"{product_name} removed successfully")
+#     except:
+
+#         else:
+#             product_dict[product_name] -= count_reduce
+#             print(f"{product_name} count lowered by {count_reduce} (Removed if reaches 0)")
+#             remove_if_zero(products)
+#     else:
+#         print(f"{product_name} is not in the fridge")
 
 def remove_product(product_dict, product_name, count_reduce=0): # Karolis Jasadavičius
     if product_name in product_dict:
@@ -157,7 +197,7 @@ while True:
     elif choice_main_menu == '2':  # add product
         os.system('cls')
         added_product = input("Enter product name you wish to add: ")
-        product_count = float(input("Enter the amount you are adding: "))
+        product_count = input("Enter the amount you are adding: ")
         add_product(products, added_product, product_count)
         input('Smash ENTER to continue: ')
 
