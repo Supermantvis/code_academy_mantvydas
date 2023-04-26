@@ -30,23 +30,27 @@ Tada programa turėtų:
 
 import os
 import json
+import logging
 
+logging.basicConfig(filename='product_changes.log', level=logging.INFO, format='%(asctime)s %(levelname)s: %(message)s')
 
 products = {}
 
-with open("duomenys.json", "r") as f:
-    products = json.load(f)
+try:
+    with open("duomenys.json", "r") as f:
+        products = json.load(f)
+except FileNotFoundError:
+    logging.info(f"Klaida json failo nuskaityme, nerastas failas")
+except Exception as error:
+    logging.info(f"Įvyko klaida nuskaitant duomenų failą: {error}")
+    print(f"Įvyko klaida nuskaitant duomenų failą")
+    print(error)
         
-    
-
 def clear():
     if os.name == 'nt':
         os.system('cls')
     else:
         os.system('clear')
-
-products = {'milk': 2.0, 'fish': 5.0, 'beer': 4.0}
-
 
 def view_product_list(item_dict):  # Karolis Venckus
     print("Product List:")
@@ -54,7 +58,7 @@ def view_product_list(item_dict):  # Karolis Venckus
         print(f"{item_name}: {item_weight}")
 
 def remove_if_zero(item_dict):   # Karolis Venckus
-    empty_products = [product for product, details in item_dict.items() if details == 0]
+    empty_products = [product for product, details in item_dict.items() if details == 0 or details < 0]
     for product in empty_products:
         del item_dict[product]
     if empty_products:
@@ -63,11 +67,17 @@ def remove_if_zero(item_dict):   # Karolis Venckus
         json.dump(item_dict, f)
 
 def add_product(product_dict, product_name, count):  # Karolis Jasadavičius
-    if product_name in product_dict:
+    try:
         product_dict[product_name] += count
-        print(f"{product_name} count changed successfully")
-    else:
+    except ValueError:
+        print(count, 'nera skaicius')
+    except KeyError:
         product_dict[product_name] = count
+        print(f"{product_name} count added successfully")
+        logging.info(f"{count} {product_name} count added successfully")
+    else:
+        print(f"{product_name} count changed successfully")
+        logging.info(f"{product_name} count changed to {product_dict[product_name]} successfully")
 
     with open("duomenys.json", "w") as f:
         json.dump(product_dict, f)
@@ -90,9 +100,11 @@ def remove_product(product_dict, product_name, count_reduce=0): # Karolis Jasada
         if count_reduce == 0:
             del product_dict[product_name]
             print(f"{product_name} removed successfully")
+            logging.info(f"{product_name} removed successfully")
         else:
             product_dict[product_name] -= count_reduce
             print(f"{product_name} count lowered by {count_reduce} (Removed if reaches 0)")
+            logging.info(f"{product_name} count lowered by {count_reduce}")
             remove_if_zero(products)
     else:
         print(f"{product_name} is not in the fridge")
@@ -163,20 +175,36 @@ while True:
     elif choice_main_menu == '2':  # add product
         os.system('cls')
         added_product = input("Enter product name you wish to add: ")
-        product_count = float(input("Enter the amount you are adding: "))
+        while True:
+            try:
+                product_count = float(input("Enter the amount you are adding: "))
+                break
+            except ValueError:
+                print("Please enter the correct amount")
         add_product(products, added_product, product_count)
         input('Smash ENTER to continue: ')
 
     elif choice_main_menu == '3':  # remove product
-        os.system('cls')
-        product_name = input("Enter product name you wish to take: ")
-        deleting = input("Choose your option\n 1: Take all \n 2: Ammount\n")
-        if deleting == '2':
-            product_count = float(input("Enter the amount you are taking: "))
-            remove_product(products, product_name, count_reduce=product_count)
-        else:
-            remove_product(products, product_name, count_reduce=0)
-        input('Smash ENTER to continue: ')
+            os.system('cls')
+            product_name = input("Enter product name you wish to take: ")
+            while True:
+                deleting = input("Choose your option\n 1: Take all \n 2: Amount\n")
+                try:
+                    deleting = int(deleting)
+                    break
+                except ValueError:
+                    print("Please enter a valid number")
+            if deleting == 2:
+                while True:
+                    try:
+                        product_count = float(input("Enter the amount you are taking: "))
+                        break
+                    except ValueError:
+                        print("Please enter a valid number")
+                remove_product(products, product_name, count_reduce=product_count)
+            else:
+                remove_product(products, product_name, count_reduce=0)
+            input('Smash ENTER to continue: ')
 
     elif choice_main_menu == '4':  # count total mass of products.
         os.system('cls')
