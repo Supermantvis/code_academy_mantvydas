@@ -1,5 +1,8 @@
 -- 1. Išrinkite visus duomenis iš lentelės “DARBUOTOJAI”.
+-- DELETE FROM DARBUOTOJAI;
 -- 2. Išrinkite visus duomenis iš stulpelio “GIMIMO_DATA” - lentelėje “DARBUOTOJAI”.
+-- ALTER TABLE DARBUOTOJAI
+-- DROP COLUMN GIMIMO_DATA;????????
 -- 3. Išrinkite visus duomenis iš stulpelių “VARDAS”,”PAVARDĖ”, “PAREIGOS” - lentelėje “DARBUOTOJAI”.
 -- 4. Išrinkite unikalias reikšmes iš stulpelio SKYRIUS_PAVADINIMAS - lentelėje “DARBUOTOJAI”.
 -- 5. Išrinkite visus duomenis apie darbuotojus, kurie dirba Gamybos skyriuje.
